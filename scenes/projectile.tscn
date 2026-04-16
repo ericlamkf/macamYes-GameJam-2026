@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bdrps8k1cu7ho"]
+
+[ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="1_c8fcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3m7n"]
+size = Vector2(16, 16)
+
+[node name="Projectile" type="Area2D" unique_id=1718785836]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1558377551]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_c8fcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=693570764]
+shape = SubResource("RectangleShape2D_q3m7n")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1678736388]
+visible = false
