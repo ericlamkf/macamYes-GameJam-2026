@@ -21,12 +21,10 @@ func follow_player(delta):
 	if global_position.distance_to(player.global_position) <= 30:
 		return
 		
-	#
-	#global_position = global_position.lerp(
-	#	player.global_position,
-	#	follow_speed * delta
-	#)
-	#
+	global_position = global_position.lerp(
+		player.global_position,
+		follow_speed * delta
+	)
 
 func check_detach():
 	if global_position.distance_to(player.global_position) > max_distance:

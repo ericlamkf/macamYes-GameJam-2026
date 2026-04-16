@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://pq7nwpyyln4r"]
 
-[ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scenes/main.gd" id="1_rarhs"]
+[ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scripts/main.gd" id="1_rarhs"]
 [ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="1_rvslj"]
 [ext_resource type="PackedScene" uid="uid://c3bjoo3c8dlib" path="res://scenes/Player.tscn" id="2_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/CtrlEntity.tscn" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/Projectile.tscn" id="5_vcsgt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rarhs"]
 size = Vector2(1703.5, 28)
@@ -24,7 +25,10 @@ position = Vector2(-1, 47)
 shape = SubResource("RectangleShape2D_rarhs")
 
 [node name="Player" parent="." unique_id=1421281123 instance=ExtResource("2_0bbpv")]
-position = Vector2(-1, 14)
+position = Vector2(1, 1)
 
 [node name="CtrlEntity" parent="." unique_id=908876274 instance=ExtResource("3_0bbpv")]
-position = Vector2(-35, 1)
+position = Vector2(-51, -5)
+
+[node name="Projectile" parent="." unique_id=1952188133 instance=ExtResource("5_vcsgt")]
+position = Vector2(142, -78)

@@ -4,17 +4,19 @@
 [ext_resource type="Script" uid="uid://b5ft163ay3k7" path="res://scripts/ctrl_entity.gd" id="1_jsegu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jsegu"]
+size = Vector2(40, 40)
 
 [node name="CtrlEntity" type="Node2D" unique_id=1472873674]
 script = ExtResource("1_jsegu")
-max_distance = 100
+max_distance = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]
-position = Vector2(0.24999952, 0.24999952)
-scale = Vector2(0.15234378, 0.15234378)
+position = Vector2(9.536743e-07, -1.9073486e-06)
+scale = Vector2(0.31640628, 0.31640628)
 texture = ExtResource("1_icklf")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=206881073]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1246463704]
 shape = SubResource("RectangleShape2D_jsegu")
