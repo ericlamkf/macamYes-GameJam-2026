@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dkyu8aq86exwx"]
+
+[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_1lgvh"]
+[ext_resource type="Script" path="res://scenes/syntax_crawler.gd" id="2_tsdx6"]
+
+[node name="SyntaxCrawler" unique_id=717656759 instance=ExtResource("1_1lgvh")]
+script = ExtResource("2_tsdx6")
+speed = 50.0
+
+[node name="WallCheck" type="RayCast2D" parent="." index="4" unique_id=786610215]
+target_position = Vector2(-20, 0)
+
+[node name="LedgeCheck" type="RayCast2D" parent="." index="5" unique_id=430625661]
+position = Vector2(-5, 0)
