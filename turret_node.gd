@@ -28,7 +28,5 @@ func shoot():
 		
 		# Move the bullet to the Muzzle's exact location
 		proj.global_position = muzzle.global_position
-		
-		# Tell the bullet who fired it and which way to go
-		proj.source = self 
-		proj.direction = Vector2.LEFT # Change to RIGHT if your turret faces right
+
+		proj.shoot(self, Vector2.LEFT)

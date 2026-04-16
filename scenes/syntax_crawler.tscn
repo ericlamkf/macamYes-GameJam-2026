@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bb20nrjxqko54"]
+[gd_scene format=3 uid="uid://dkyu8aq86exwx"]
 
-[ext_resource type="PackedScene" uid="uid://dxdxjanpsnhrl" path="res://scenes/enemy.tscn" id="1_1lgvh"]
-[ext_resource type="Script" uid="uid://dj3h4pxnkmo4f" path="res://scenes/syntax_crawler.gd" id="2_tsdx6"]
+[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_1lgvh"]
+[ext_resource type="Script" path="res://scenes/syntax_crawler.gd" id="2_tsdx6"]
 
 [node name="SyntaxCrawler" unique_id=717656759 instance=ExtResource("1_1lgvh")]
 script = ExtResource("2_tsdx6")

@@ -1,12 +1,12 @@
-extends Area2D
+extends Node2D
+
 class_name Projectile
 
-@export var speed: float = 200.0
-var direction: Vector2 = Vector2.LEFT # Default shooting left
+@export var speed: float = 20.0
 var source: Node # Tracks who fired it
+var direction: Vector2
 
-func _physics_process(delta):
-	position += direction * speed * delta
+var shot = false
 
 # Connect the screen_exited signal from VisibleOnScreenNotifier2D
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -20,28 +20,17 @@ func get_clipboard_data() -> ClipboardData:
 		"speed": speed,
 		"original_direction": direction
 	}
+	data.scene_ref = preload("res://scenes/projectile.tscn")
 	return data
 
-extends Node2D
+func shoot(source, direction):
+	self.source = source
+	self.direction = direction
+	look_at(global_position + direction)
+	self.direction = direction * speed
+	print(direction)
+	shot = true
 
-@export var speed = 10.0
-
-func get_clipboard_data():
-	return {
-		"scene": preload("res://scenes/Projectile.tscn"),
-		"type": "projectile"
-	}
-	
-var started = false
-var vector
-
-func shoot(direction, position):
-	global_position = position
-	vector = direction
-	look_at(global_position + vector)
-	vector = direction * speed
-	started = true
-	
 func _physics_process(delta):
-	if(started):
-		position += vector
+	if(shot):
+		position += direction

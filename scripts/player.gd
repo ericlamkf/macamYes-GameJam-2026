@@ -49,10 +49,14 @@ func _process(delta):
 		paste()
 
 func paste():
-	var scene: PackedScene = GameState.clipboard["scene"]
+	var scene = GameState.clipboard.scene_ref
+
 	var instance = scene.instantiate()
-	get_parent().add_child(instance)
-	instance.shoot(view_direction, global_position)
+	get_tree().current_scene.add_child(instance)
+	
+	instance.global_position = global_position
+	instance.shoot(self, view_direction)
+
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
