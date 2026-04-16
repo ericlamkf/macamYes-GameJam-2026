@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bdeb6sdq80aup"]
+
+[ext_resource type="PackedScene" uid="uid://dxdxjanpsnhrl" path="res://scenes/enemy.tscn" id="1_ux45s"]
+[ext_resource type="Script" uid="uid://c1uvy3k7kcvxp" path="res://turret_node.gd" id="2_25ock"]
+[ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_25ock"]
+
+[node name="TurretNode" unique_id=717656759 instance=ExtResource("1_ux45s")]
+script = ExtResource("2_25ock")
+projectile_scene = ExtResource("3_25ock")
+is_copyable = true
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1265366021]
+visible = true
+
+[node name="Hitbox" parent="." index="2" unique_id=939704740]
+visible = true
+
+[node name="ShootTimer" type="Timer" parent="." index="4" unique_id=1675192250]
+wait_time = 3.0
+autostart = true
+
+[node name="Muzzle" type="Marker2D" parent="." index="5" unique_id=31044615]
+position = Vector2(-64, 64)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
