@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bh1nk2xun13s5"]
+
+[ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="1_icklf"]
+[ext_resource type="Script" uid="uid://b5ft163ay3k7" path="res://scripts/ctrl_entity.gd" id="1_jsegu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsegu"]
+
+[node name="CtrlEntity" type="Node2D" unique_id=1472873674]
+script = ExtResource("1_jsegu")
+max_distance = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]
+position = Vector2(0.24999952, 0.24999952)
+scale = Vector2(0.15234378, 0.15234378)
+texture = ExtResource("1_icklf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=206881073]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1246463704]
+shape = SubResource("RectangleShape2D_jsegu")
