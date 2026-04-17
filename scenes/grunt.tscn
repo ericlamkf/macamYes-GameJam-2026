@@ -59,6 +59,7 @@ speed = 100.0
 projectile_scene = ExtResource("3_t8odd")
 shoot_cooldown = 1.0
 aim_ready_time = 1.0
+max_health = 80
 
 [node name="Sprite2D" parent="." index="0" unique_id=739483909]
 position = Vector2(0, -16)
@@ -85,9 +86,13 @@ enabled = false
 
 [node name="DetectionArea" type="Area2D" parent="." index="6" unique_id=32441649]
 position = Vector2(0, -8)
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1105360225]
 shape = SubResource("CircleShape2D_t8odd")
 
 [node name="Marker2D" type="Marker2D" parent="." index="7" unique_id=2030095144]
 position = Vector2(16, -7)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_body_exited"]

@@ -1,21 +1,22 @@
-extends Node2D
+extends Area2D
 
 class_name Projectile
 
-@export var speed: float = 5.0
+@export var speed: float = 200.0
 var source: Node # Tracks who fired it
 var direction: Vector2
 var shot = false
+var projectile_damage
 
 @onready var label = $Label
-@onready var collision_shape = $Area2D/CollisionShape2D
+@onready var collision_shape = $CollisionShape2D
 
 # Connect the screen_exited signal from VisibleOnScreenNotifier2D
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _ready():
-	var rand = randi_range(3, 6)
+	var rand = randi_range(4, 6)
 	var string = ""
 	var length = 0
 	for i in rand:
@@ -25,6 +26,8 @@ func _ready():
 			length += 3
 		else:
 			length += 5
+	projectile_damage = string.bin_to_int()
+
 	label.text = string
 
 	change_collision_width(length)
@@ -66,10 +69,20 @@ func shoot(source, direction):
 	self.direction = direction
 	look_at(global_position + direction)
 	self.direction = direction * speed
-	print(direction)
+	
+	set_collision_mask_value(source.collision_layer, false)
 	shot = true
 
 func _physics_process(delta):
 	if(shot):
 		visible = true
-		position += direction
+		position += direction * delta
+		
+
+func _on_area_entered(area: Area2D):
+	print(area)
+	# The 'area' is the Hurtbox of the enemy
+	if area.has_method("take_damage"):
+		area.take_damage(projectile_damage)             # Send it to the target
+		
+	queue_free() # Destroy the bullet

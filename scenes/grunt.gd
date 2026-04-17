@@ -16,6 +16,7 @@ var can_shoot: bool = true
 var is_aiming: bool = false
 
 func _ready():
+	super._ready()
 	# 1. Setup Patrol Timer (from your code)
 	patrol_timer.timeout.connect(_on_patrol_timeout)
 	_on_patrol_timeout()

@@ -24,12 +24,6 @@ position = Vector2(6, 72)
 scale = Vector2(13.7734375, 0.6171875)
 texture = ExtResource("2_tefeu")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1043492172]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=763297074]
-position = Vector2(-1, 47)
-shape = SubResource("RectangleShape2D_rarhs")
-
 [node name="Player" parent="." unique_id=1421281123 instance=ExtResource("3_o6xl0")]
 position = Vector2(-414, 2)
 
@@ -49,12 +43,23 @@ position = Vector2(167, 35)
 
 [node name="TurretNode" parent="." unique_id=767529118 instance=ExtResource("7_o6xl0")]
 position = Vector2(-13, 34)
+is_copyable = true
+is_ally = false
 
 [node name="Enemy" parent="." unique_id=1951649866 instance=ExtResource("8_tipki")]
-position = Vector2(-670, 29)
-aim_ready_time = 1.0
+position = Vector2(-662, 31)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1043492172]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=763297074]
+position = Vector2(-1, 47)
+shape = SubResource("RectangleShape2D_rarhs")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1828232406]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=177771649]
 position = Vector2(-877.5, -438)
