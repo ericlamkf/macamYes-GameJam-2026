@@ -14,7 +14,7 @@ func _ready():
 
 # We will connect the Timer to this function next
 func _on_shoot_timer_timeout():
-	print("1. Timer hit zero!")
+	#print("1. Timer hit zero!")
 	shoot()
 
 func shoot():

@@ -1,17 +1,17 @@
-[gd_scene format=4 uid="uid://c5qgn37ua7l4o"]
+[gd_scene format=4 uid="uid://bwlkwrdshmpbh"]
 
-[ext_resource type="Texture2D" uid="uid://24cpyr0lgle6" path="res://assets/tilesets/tiles/tileset.png" id="1_odbsn"]
-[ext_resource type="Texture2D" uid="uid://404n55ahpc6f" path="res://assets/tilesets/tiles/background.png" id="2_8y18y"]
-[ext_resource type="Texture2D" uid="uid://d06u5okj1vaaf" path="res://assets/tilesets/tiles/background.jpg" id="3_3tp2u"]
-[ext_resource type="PackedScene" uid="uid://215mcjwc4dp3" path="res://scenes/pickups/c_entity.tscn" id="4_hgy7r"]
-[ext_resource type="PackedScene" uid="uid://0rrq76dn7mg4" path="res://scenes/pickups/v_entity.tscn" id="5_hgy7r"]
-[ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="6_8p1rb"]
-[ext_resource type="PackedScene" uid="uid://6ko0ng811g8d" path="res://scenes/shared/KillZone.tscn" id="7_hgy7r"]
-[ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/Player.tscn" id="8_rhema"]
-[ext_resource type="PackedScene" uid="uid://bvt0bfqlq11ii" path="res://scenes/shared/checkpoint.tscn" id="9_l7gdi"]
+[ext_resource type="Texture2D" uid="uid://24cpyr0lgle6" path="res://assets/tilesets/tiles/tileset.png" id="1_7p77m"]
+[ext_resource type="Texture2D" uid="uid://404n55ahpc6f" path="res://assets/tilesets/tiles/background.png" id="2_sds6h"]
+[ext_resource type="Texture2D" uid="uid://d06u5okj1vaaf" path="res://assets/tilesets/tiles/background.jpg" id="3_b1tps"]
+[ext_resource type="PackedScene" uid="uid://215mcjwc4dp3" path="res://scenes/pickups/c_entity.tscn" id="4_y8t4w"]
+[ext_resource type="PackedScene" uid="uid://0rrq76dn7mg4" path="res://scenes/pickups/v_entity.tscn" id="5_y8t4w"]
+[ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="6_lamne"]
+[ext_resource type="PackedScene" uid="uid://6ko0ng811g8d" path="res://scenes/shared/KillZone.tscn" id="6_sds6h"]
+[ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/Player.tscn" id="7_b1tps"]
+[ext_resource type="PackedScene" uid="uid://bvt0bfqlq11ii" path="res://scenes/shared/checkpoint.tscn" id="9_8pjek"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8y18y"]
-texture = ExtResource("1_odbsn")
+texture = ExtResource("1_7p77m")
 6:2/0 = 0
 6:2/0/terrain_set = 0
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -164,7 +164,7 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_8y18y")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynxc0"]
-texture = ExtResource("1_odbsn")
+texture = ExtResource("1_7p77m")
 19:5/0 = 0
 19:5/0/terrain_set = 0
 19:5/0/terrains_peering_bit/bottom_right_corner = 0
@@ -358,7 +358,7 @@ texture = ExtResource("1_odbsn")
 21:5/0/terrains_peering_bit/top_right_corner = 2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tp2u"]
-texture = ExtResource("2_8y18y")
+texture = ExtResource("2_sds6h")
 1:1/size_in_atlas = Vector2i(2, 2)
 1:1/0 = 0
 1:1/0/texture_origin = Vector2i(0, 8)
@@ -595,7 +595,7 @@ sources/0 = SubResource("TileSetAtlasSource_ynxc0")
 sources/1 = SubResource("TileSetAtlasSource_3tp2u")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p1rb"]
-texture = ExtResource("1_odbsn")
+texture = ExtResource("1_7p77m")
 11:5/0 = 0
 11:7/0 = 0
 10:7/0 = 0
@@ -638,36 +638,36 @@ modulate = Color(0.65882355, 0.5019608, 0.88235295, 0.63529414)
 z_index = -2
 position = Vector2(398.00003, -74)
 scale = Vector2(1.2695313, 1.7721024)
-texture = ExtResource("3_3tp2u")
+texture = ExtResource("3_b1tps")
 
-[node name="CEntity" parent="." unique_id=1472873674 instance=ExtResource("4_hgy7r")]
+[node name="CEntity" parent="." unique_id=1472873674 instance=ExtResource("4_y8t4w")]
 position = Vector2(221.99998, -16.999998)
 scale = Vector2(0.7, 0.7)
 
-[node name="VEntity" parent="." unique_id=470717748 instance=ExtResource("5_hgy7r")]
+[node name="VEntity" parent="." unique_id=470717748 instance=ExtResource("5_y8t4w")]
 position = Vector2(480, -14)
 scale = Vector2(0.7, 0.7)
 
-[node name="SyntaxCrawler_A" parent="." unique_id=717656759 instance=ExtResource("6_8p1rb")]
+[node name="SyntaxCrawler_A" parent="." unique_id=717656759 instance=ExtResource("6_lamne")]
 position = Vector2(403, -36)
 scale = Vector2(0.15, 0.15)
 
-[node name="SyntaxCrawler_B" parent="." unique_id=1802971641 instance=ExtResource("6_8p1rb")]
+[node name="SyntaxCrawler_B" parent="." unique_id=1802971641 instance=ExtResource("6_lamne")]
 position = Vector2(261, -322)
 scale = Vector2(0.15, 0.15)
 
-[node name="SyntaxCrawler_C" parent="." unique_id=621936786 instance=ExtResource("6_8p1rb")]
+[node name="SyntaxCrawler_C" parent="." unique_id=621936786 instance=ExtResource("6_lamne")]
 position = Vector2(150, -211)
 scale = Vector2(0.15, 0.15)
 
-[node name="SyntaxCrawler_D" parent="." unique_id=769004077 instance=ExtResource("6_8p1rb")]
+[node name="SyntaxCrawler_D" parent="." unique_id=769004077 instance=ExtResource("6_lamne")]
 position = Vector2(852, -242)
 scale = Vector2(0.15, 0.15)
 
-[node name="KillLine" parent="." unique_id=2101105798 instance=ExtResource("7_hgy7r")]
+[node name="KillLine" parent="." unique_id=2101105798 instance=ExtResource("6_sds6h")]
 position = Vector2(311, 283)
 
-[node name="Player" parent="." unique_id=1421281123 instance=ExtResource("8_rhema")]
+[node name="Player" parent="." unique_id=1421281123 instance=ExtResource("7_b1tps")]
 position = Vector2(-76, 130)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=4705653]
@@ -675,5 +675,5 @@ offset = Vector2(0, -48)
 zoom = Vector2(5, 5)
 process_callback = 0
 
-[node name="Checkpoint_tscn" parent="." unique_id=677248382 instance=ExtResource("9_l7gdi")]
+[node name="Checkpoint_tscn" parent="." unique_id=677248382 instance=ExtResource("9_8pjek")]
 position = Vector2(-75, 112)
