@@ -21,3 +21,12 @@ func take_damage(amount: int):
 		
 func die():
 	queue_free()
+	
+func get_clipboard_data() -> ClipboardData:
+	var data = ClipboardData.new()
+	data.type = "enemy"
+	data.data = {
+		"current_health": current_health
+	}
+	data.scene_ref = self.scene_file_path
+	return data

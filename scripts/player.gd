@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 200
 @export var jump_force = -400
 @export var gravity = 900
+@export var max_range = 50
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
@@ -49,19 +50,33 @@ func _process(delta):
 		paste()
 
 func paste():
-	var scene = GameState.clipboard.scene_ref
+	var clipboard = GameState.clipboard
+	var scene = load(clipboard.scene_ref)
+	var type = clipboard.type
 
-	var instance = scene.instantiate()
+	var instance = scene.instantiate()	
+
 	get_tree().current_scene.add_child(instance)
 	
-	instance.global_position = global_position
-	instance.shoot(self, view_direction)
-
+	if(type == "projectile"):
+		instance.global_position = global_position
+		instance.shoot(self, view_direction)
+	elif(type == "enemy"):
+		
+		if view_direction.x < 0:
+			if instance.has_method("set_facing_direction"):
+				instance.set_facing_direction(-1)
+				
+		if(copy_ray.is_colliding()):
+			instance.global_position = copy_ray.get_collision_point()
+		else:
+			instance.global_position = copy_ray.to_global(copy_ray.target_position)
+			
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
 	view_direction = (mouse_pos - global_position).normalized()
-	copy_ray.target_position = view_direction * 300  # max range
+	copy_ray.target_position = view_direction * max_range  # max range
 
 func update_aim_line():
 	var start = Vector2.ZERO
@@ -79,6 +94,8 @@ func _input(event):
 func try_copy():
 	if copy_ray.is_colliding():
 		var target = copy_ray.get_collider().get_parent()
-		if target.has_method("get_clipboard_data"):
+		if not target.has_method("get_clipboard_data"):
+			target = target.get_parent()
+		if target and target.has_method("get_clipboard_data"):
 			GameState.clipboard = target.get_clipboard_data()
 			print("Copied:", target.name)

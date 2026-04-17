@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://pq7nwpyyln4r"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="2_tefeu"]
 [ext_resource type="PackedScene" uid="uid://44suudqyxqme" path="res://scenes/player.tscn" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="4_tipki"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://gesfn4ofg272" path="res://scenes/turret_node.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dcawbu40era7q" path="res://scenes/grunt.tscn" id="8_tipki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rarhs"]
 size = Vector2(1703.5, 28)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
+size = Vector2(47, 942)
+
 [node name="Node2D" type="Node2D" unique_id=1585743878]
-position = Vector2(562, 589)
+position = Vector2(945, 915)
 script = ExtResource("1_tbgi4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1490893840]
@@ -29,6 +33,10 @@ shape = SubResource("RectangleShape2D_rarhs")
 [node name="Player" parent="." unique_id=1421281123 instance=ExtResource("3_o6xl0")]
 position = Vector2(-414, 2)
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=304486105]
+offset = Vector2(0, -48)
+zoom = Vector2(6, 6)
+
 [node name="CtrlEntity" parent="." unique_id=908876274 instance=ExtResource("4_tipki")]
 position = Vector2(-364, -33)
 
@@ -36,7 +44,16 @@ position = Vector2(-364, -33)
 position = Vector2(-199, -87)
 
 [node name="SyntaxCrawler" parent="." unique_id=717656759 instance=ExtResource("6_tefeu")]
-position = Vector2(9, -91)
+position = Vector2(167, 35)
 
 [node name="TurretNode" parent="." unique_id=767529118 instance=ExtResource("7_o6xl0")]
-position = Vector2(253, -101)
+position = Vector2(-13, 34)
+
+[node name="Enemy" parent="." unique_id=1951649866 instance=ExtResource("8_tipki")]
+position = Vector2(-670, 29)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1828232406]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=177771649]
+position = Vector2(-877.5, -438)
+shape = SubResource("RectangleShape2D_tipki")

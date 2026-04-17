@@ -1,7 +1,7 @@
 extends EnemyBase 
 
 @export var speed: float = 50.0
-var direction: int = -1
+var direction: int = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -31,7 +31,7 @@ func flip_direction():
 	direction *= -1
 	
 	# Flip the visuals
-	sprite.flip_h = (direction > 0)
+	sprite.flip_h = (direction < 0)
 	
 	# Flip the sensor positions so they look the right way
 	wall_check.target_position.x *= -1

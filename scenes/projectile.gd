@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Projectile
 
-@export var speed: float = 20.0
+@export var speed: float = 10.0
 var source: Node # Tracks who fired it
 var direction: Vector2
 
@@ -20,7 +20,7 @@ func get_clipboard_data() -> ClipboardData:
 		"speed": speed,
 		"original_direction": direction
 	}
-	data.scene_ref = preload("res://scenes/projectile.tscn")
+	data.scene_ref = self.scene_file_path
 	return data
 
 func shoot(source, direction):
