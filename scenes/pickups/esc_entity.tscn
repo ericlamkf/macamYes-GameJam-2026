@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bapxdoc8tpqxo"]
+
+[ext_resource type="Script" uid="uid://cump5pmhr4f0a" path="res://scenes/pickups/esc_entity.gd" id="1_iyc21"]
+[ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="2_f66rl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsegu"]
+size = Vector2(72, 29)
+
+[node name="ESCEntity" type="Node2D" unique_id=1472873674]
+script = ExtResource("1_iyc21")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]
+position = Vector2(-0.5000019, 2.0000114)
+scale = Vector2(2.5937502, 2.2449048)
+texture = ExtResource("2_f66rl")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=206881073]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1246463704]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_jsegu")

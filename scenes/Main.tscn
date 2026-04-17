@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://pq7nwpyyln4r"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="2_tefeu"]
-[ext_resource type="PackedScene" uid="uid://44suudqyxqme" path="res://scenes/player.tscn" id="3_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://44suudqyxqme" path="res://scenes/Player.tscn" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="4_tipki"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="5_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="6_tefeu"]
