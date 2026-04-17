@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var follow_speed := 5.0
+@export var follow_speed := 1.0
 @export var max_distance := 150
 @export var stop_distance := 30
 

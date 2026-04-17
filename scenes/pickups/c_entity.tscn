@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bh1nk2xun13s5"]
+[gd_scene format=3 uid="uid://215mcjwc4dp3"]
 
 [ext_resource type="Script" uid="uid://udxv0rj6s5kp" path="res://scenes/pickups/c_entity.gd" id="1_03uco"]
 [ext_resource type="Texture2D" uid="uid://bb7tcoclmkwsy" path="res://assets/sprites/entities/Keyboard Letters and Symbols.png" id="2_3fq6l"]

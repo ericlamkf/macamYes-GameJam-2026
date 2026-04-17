@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name EnemyBase
 
-@export var max_health: int = 100
+@export var max_health: int = 50
 var current_health: int
 
 # Faction system for phase 2 (pasted enemies can fight original enemies)
@@ -11,7 +11,7 @@ var current_health: int
 func _ready():
 	current_health = max_health
 	
-func take_damage(amount: int):
+func apply_damage(amount: int):
 	current_health -= amount
 	# Debug purpose
 	print("Enemy took damage! Health: ", current_health)
@@ -21,3 +21,12 @@ func take_damage(amount: int):
 		
 func die():
 	queue_free()
+	
+func get_clipboard_data() -> ClipboardData:
+	var data = ClipboardData.new()
+	data.type = "enemy"
+	data.data = {
+		"current_health": current_health
+	}
+	data.scene_ref = self.scene_file_path
+	return data

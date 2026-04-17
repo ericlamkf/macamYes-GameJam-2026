@@ -1,25 +1,82 @@
 [gd_scene format=3 uid="uid://gesfn4ofg272"]
 
 [ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_ux45s"]
-[ext_resource type="Script" path="res://turret_node.gd" id="2_25ock"]
+[ext_resource type="Script" uid="uid://c1uvy3k7kcvxp" path="res://turret_node.gd" id="2_25ock"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_25ock"]
+[ext_resource type="Texture2D" uid="uid://cs1yo6hbymee2" path="res://assets/sprites/enemies/m2rksman.png" id="4_mopol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdp2a"]
+atlas = ExtResource("4_mopol")
+region = Rect2(0, 0, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smvv6"]
+atlas = ExtResource("4_mopol")
+region = Rect2(80, 0, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpoqo"]
+atlas = ExtResource("4_mopol")
+region = Rect2(160, 0, 80, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se8ap"]
+atlas = ExtResource("4_mopol")
+region = Rect2(240, 0, 80, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vet6q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdp2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smvv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpoqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se8ap")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mopol"]
+size = Vector2(23, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdp2a"]
+size = Vector2(42, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smvv6"]
+size = Vector2(30, 23)
 
 [node name="TurretNode" unique_id=717656759 instance=ExtResource("1_ux45s")]
 script = ExtResource("2_25ock")
 projectile_scene = ExtResource("3_25ock")
 is_copyable = true
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=1265366021]
-visible = true
+[node name="Sprite2D" parent="." index="0" unique_id=739483909]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_vet6q")
+autoplay = "default"
 
-[node name="Hitbox" parent="." index="2" unique_id=939704740]
-visible = true
+[node name="CollisionShape2D" parent="." index="1" unique_id=1265366021]
+position = Vector2(4.5, -10)
+shape = SubResource("RectangleShape2D_mopol")
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(939704740) index="0" unique_id=302478187]
+position = Vector2(5, 9.5)
+shape = SubResource("RectangleShape2D_xdp2a")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1972565131) index="0" unique_id=935797810]
+position = Vector2(5, 12.5)
+shape = SubResource("RectangleShape2D_smvv6")
 
 [node name="ShootTimer" type="Timer" parent="." index="4" unique_id=1675192250]
 wait_time = 3.0
 autostart = true
 
 [node name="Muzzle" type="Marker2D" parent="." index="5" unique_id=31044615]
-position = Vector2(-64, 64)
+position = Vector2(16, -6)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

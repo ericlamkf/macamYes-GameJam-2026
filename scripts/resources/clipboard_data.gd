@@ -6,7 +6,7 @@ class_name ClipboardData
 @export var type: String = "block"
 
 # The actual scene that will be instantiated when Ctrl + V is pressed
-@export var scene_ref: PackedScene
+@export var scene_ref: String
 
 # Any extra stats speed, health, direction to retain when pasting
 @export var data: Dictionary = {}
