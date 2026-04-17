@@ -7,6 +7,7 @@
 size = Vector2(72, 29)
 
 [node name="ESCEntity" type="Node2D" unique_id=1472873674]
+texture_filter = 1
 script = ExtResource("1_iyc21")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]

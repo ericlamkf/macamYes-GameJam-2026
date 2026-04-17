@@ -7,7 +7,7 @@
 radius = 19.0
 height = 60.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1421281123]
+[node name="Player" type="CharacterBody2D" unique_id=1421281123 groups=["player"]]
 script = ExtResource("1_v6fml")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=697931370]
@@ -22,3 +22,7 @@ collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1179121475]
 width = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=829445738]
+position = Vector2(-1, -132)
+zoom = Vector2(2, 2)

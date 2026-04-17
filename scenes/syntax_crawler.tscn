@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://dkyu8aq86exwx"]
 
 [ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_1lgvh"]
-[ext_resource type="Script" path="res://scenes/syntax_crawler.gd" id="2_tsdx6"]
+[ext_resource type="Script" uid="uid://dj3h4pxnkmo4f" path="res://scenes/syntax_crawler.gd" id="2_tsdx6"]
 
 [node name="SyntaxCrawler" unique_id=717656759 instance=ExtResource("1_1lgvh")]
 script = ExtResource("2_tsdx6")
 speed = 50.0
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1972565131) index="0" unique_id=935797810]
+scale = Vector2(0.5, 0.5)
 
 [node name="WallCheck" type="RayCast2D" parent="." index="4" unique_id=786610215]
 target_position = Vector2(-20, 0)
