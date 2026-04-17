@@ -1,22 +1,28 @@
 [gd_scene format=3 uid="uid://bdrps8k1cu7ho"]
 
 [ext_resource type="Script" uid="uid://cod7qpu3ecwxr" path="res://scenes/projectile.gd" id="1_dprbf"]
+[ext_resource type="FontFile" uid="uid://c8trj0aomcxtm" path="res://assets/fonts/glyphmesss.ttf" id="2_q3m7n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_softn"]
+font = ExtResource("2_q3m7n")
+font_size = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ku62"]
-size = Vector2(119, 20)
+resource_local_to_scene = true
+size = Vector2(9, 5)
 
 [node name="Projectile" type="Node2D" unique_id=1952188133]
 script = ExtResource("1_dprbf")
 
 [node name="Label" type="Label" parent="." unique_id=36930752]
-offset_left = -60.0
-offset_top = -12.0
-offset_right = 60.0
-offset_bottom = 11.0
-text = "0100100010101"
+offset_top = -4.0
+offset_right = 55.0
+offset_bottom = 4.0
+text = "111"
+label_settings = SubResource("LabelSettings_softn")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=814716795]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1315177284]
-position = Vector2(-1.5, 0)
+position = Vector2(4.5, -0.5)
 shape = SubResource("RectangleShape2D_6ku62")

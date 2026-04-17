@@ -3,6 +3,7 @@ extends EnemyBase
 @export var speed: float = 100.0
 @export var projectile_scene: PackedScene = preload("res://scenes/projectile.tscn")
 @export var shoot_cooldown: float = 1.0
+@export var aim_ready_time: float = 1.0
 
 @onready var ray_cast = $RayCast2D
 @onready var patrol_timer = $Timer # The one you already have
@@ -12,6 +13,7 @@ extends EnemyBase
 var direction: float = 1.0
 var player: Node2D = null
 var can_shoot: bool = true
+var is_aiming: bool = false
 
 func _ready():
 	# 1. Setup Patrol Timer (from your code)
@@ -40,13 +42,29 @@ func _physics_process(delta):
 		
 		if ray_cast.is_colliding():
 			var collider = ray_cast.get_collider()
-			if collider == player and can_shoot:
-				shoot(player.global_position)
+			if collider == player and can_shoot and not is_aiming:
+				start_aiming_sequence()
 	else:
 		# --- PATROL STATE ---
 		velocity.x = direction * speed
 		
 	move_and_slide()
+
+func start_aiming_sequence():
+	is_aiming = true
+	
+	# Optional: Play an "anticipation" animation or sound here
+	# $AnimatedSprite2D.play("charge_up")
+	
+	# Wait for the wind-up time
+	await get_tree().create_timer(aim_ready_time).timeout
+	
+	# Check if the player is STILL in sight after the timer ends
+	# (Prevents shooting through walls if the player moved during the wait)
+	if player and ray_cast.get_collider() == player:
+		shoot(player.global_position)
+	
+	is_aiming = false # Reset so it can aim again next time can_shoot is true
 
 func shoot(target_pos: Vector2):
 	can_shoot = false # Start cooldown

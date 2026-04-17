@@ -1,19 +1,33 @@
 [gd_scene format=3 uid="uid://bh1nk2xun13s5"]
 
-[ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="1_icklf"]
-[ext_resource type="Script" uid="uid://b5ft163ay3k7" path="res://scripts/ctrl_entity.gd" id="1_jsegu"]
+[ext_resource type="Script" path="res://scripts/ctrl_entity.gd" id="1_jsegu"]
+[ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="2_v5b6j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvb05"]
+atlas = ExtResource("2_v5b6j")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ptqkw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvb05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jsegu"]
-size = Vector2(40, 40)
+size = Vector2(24, 12)
 
 [node name="CtrlEntity" type="Node2D" unique_id=1472873674]
 script = ExtResource("1_jsegu")
 max_distance = 300
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=208465631]
 position = Vector2(9.536743e-07, -1.9073486e-06)
-scale = Vector2(0.31640628, 0.31640628)
-texture = ExtResource("1_icklf")
+sprite_frames = SubResource("SpriteFrames_ptqkw")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=206881073]
 collision_layer = 0

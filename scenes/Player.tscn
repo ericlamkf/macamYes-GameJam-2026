@@ -89,3 +89,6 @@ collide_with_areas = true
 [node name="Line2D" type="Line2D" parent="." unique_id=1179121475]
 position = Vector2(0, -9)
 width = 1.0
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1458115560]
+position = Vector2(0, -9)

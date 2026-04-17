@@ -35,13 +35,14 @@ position = Vector2(-414, 2)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=304486105]
 offset = Vector2(0, -48)
-zoom = Vector2(6, 6)
+zoom = Vector2(5, 5)
+process_callback = 0
 
 [node name="CtrlEntity" parent="." unique_id=908876274 instance=ExtResource("4_tipki")]
 position = Vector2(-364, -33)
 
 [node name="Projectile" parent="." unique_id=1952188133 instance=ExtResource("5_85g3d")]
-position = Vector2(-199, -87)
+position = Vector2(-305, -7)
 
 [node name="SyntaxCrawler" parent="." unique_id=717656759 instance=ExtResource("6_tefeu")]
 position = Vector2(167, 35)
@@ -51,6 +52,7 @@ position = Vector2(-13, 34)
 
 [node name="Enemy" parent="." unique_id=1951649866 instance=ExtResource("8_tipki")]
 position = Vector2(-670, 29)
+aim_ready_time = 1.0
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1828232406]
 

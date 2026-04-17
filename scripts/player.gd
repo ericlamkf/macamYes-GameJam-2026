@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export var speed = 200
-@export var jump_force = -400
+@export var speed = 150
+@export var jump_force = -300
 @export var gravity = 900
-@export var max_range = 50
+@export var max_range = 80
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
@@ -59,7 +59,7 @@ func paste():
 	get_tree().current_scene.add_child(instance)
 	
 	if(type == "projectile"):
-		instance.global_position = global_position
+		instance.global_position = $Marker2D.global_position
 		instance.shoot(self, view_direction)
 	elif(type == "enemy"):
 		
