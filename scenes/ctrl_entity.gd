@@ -45,3 +45,8 @@ func reattach():
 
 	# trigger chaos effect
 	player.controls_inverted_signal = false
+
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
+	if GameState.spawn_position != Vector2.ZERO:
+		global_position = GameState.spawn_position

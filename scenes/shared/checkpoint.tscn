@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bb7tcoclmkwsy" path="res://assets/sprites/entities/Keyboard Letters and Symbols.png" id="2_mg0i5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mg0i5"]
-radius = 48.259712
+radius = 46.389652
 
 [node name="Checkpoint_tscn" type="Area2D" unique_id=677248382]
 script = ExtResource("1_lngx1")

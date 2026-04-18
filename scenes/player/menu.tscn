@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dlsdlvqhj1cta"]
+
+[ext_resource type="Script" uid="uid://dv7b7i8jg55db" path="res://scenes/player/menu.gd" id="1_1sww7"]
+[ext_resource type="Texture2D" uid="uid://bekxq547wua0m" path="res://assets/sprites/ui/ui.png" id="1_qr1n0"]
+[ext_resource type="Shader" uid="uid://bd7bmsbbuyarx" path="res://scenes/player/menu.gdshader" id="2_1sww7"]
+[ext_resource type="Texture2D" uid="uid://bb7tcoclmkwsy" path="res://assets/sprites/entities/Keyboard Letters and Symbols.png" id="2_6bbxm"]
+[ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="3_4woc4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fldpx"]
+texture = ExtResource("2_6bbxm")
+3:0/0 = 0
+3:7/0 = 0
+2:7/0 = 0
+1:7/0 = 0
+0:7/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+7:10/0 = 0
+7:11/0 = 0
+6:11/0 = 0
+6:10/0 = 0
+5:10/0 = 0
+5:11/0 = 0
+4:11/0 = 0
+4:10/0 = 0
+3:10/0 = 0
+3:11/0 = 0
+2:11/0 = 0
+2:10/0 = 0
+1:10/0 = 0
+1:11/0 = 0
+0:11/0 = 0
+0:10/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xouju"]
+texture = ExtResource("3_4woc4")
+
+[sub_resource type="TileSet" id="TileSet_sww8j"]
+tile_size = Vector2i(4, 4)
+sources/0 = SubResource("TileSetAtlasSource_fldpx")
+sources/1 = SubResource("TileSetAtlasSource_xouju")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r14km"]
+shader = ExtResource("2_1sww7")
+
+[sub_resource type="Animation" id="Animation_6bbxm"]
+resource_name = "blur"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4woc4"]
+_data = {
+&"blur": SubResource("Animation_6bbxm")
+}
+
+[node name="PauseMenu" type="Control" unique_id=590104783]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1sww7")
+
+[node name="TileMapDirection" type="TileMapLayer" parent="." unique_id=1308114635]
+z_index = 2
+position = Vector2(956.31244, 415.5)
+scale = Vector2(4, 2.572)
+tile_map_data = PackedByteArray(0, 0, 10, 0, 9, 0, 0, 0, 0, 0, 11, 0, 0, 0, 6, 0, 9, 0, 0, 0, 0, 0, 7, 0, 0, 0, 6, 0, 12, 0, 0, 0, 1, 0, 7, 0, 0, 0, 10, 0, 12, 0, 0, 0, 2, 0, 11, 0, 0, 0)
+tile_set = SubResource("TileSet_sww8j")
+
+[node name="Ui" type="Sprite2D" parent="." unique_id=572639138]
+position = Vector2(956.31244, 415.5)
+scale = Vector2(12.0286455, 7.729167)
+texture = ExtResource("1_qr1n0")
+region_enabled = true
+region_rect = Rect2(272, 16, 48, 48)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1464602579]
+layout_mode = 0
+offset_left = 702.0
+offset_top = 303.0
+offset_right = 1220.0
+offset_bottom = 495.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=689836123]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1926753965]
+layout_mode = 2
+text = "Continue (C)"
+
+[node name="Restart" type="Button" parent="PanelContainer/VBoxContainer" unique_id=983799271]
+layout_mode = 2
+text = "Restart (R)"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2045534989]
+material = SubResource("ShaderMaterial_r14km")
+layout_mode = 2
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1409163845]
+libraries/ = SubResource("AnimationLibrary_4woc4")
