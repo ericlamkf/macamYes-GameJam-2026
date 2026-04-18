@@ -7,10 +7,15 @@ extends CharacterBody2D
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
+@onready var sprite = $Sprite2D
+@onready var melee_hitbox = $MeleeHitbox
 
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
+var is_copy = false # Locks movement animations while shooting/copying
+var is_dead = false   # Stops the player from moving when they die
+var is_attacking = false
 
 signal copy_successful(data: ClipboardData)
 
@@ -32,9 +37,19 @@ func _physics_process(delta):
 	# 1. Handle Gravity
 	velocity.y += gravity * delta
 	velocity.y = clamp(velocity.y, -3000, 3000)
-
+	
+	if is_dead:
+		# Stop horizontal movement instantly
+		velocity.x = 0 
+		# Make sure the body actually falls to the ground!
+		move_and_slide() 
+		# Cancel the rest of the script so they can't attack or jump
+		return
+			
 	# 3. Get horizontal input direction
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction = 0
+	
+	direction = Input.get_axis("move_left", "move_right")
 	
 	# 4. "Regain" logic: Stop inversion only when the player stops moving
 	if direction == 0:
@@ -42,10 +57,44 @@ func _physics_process(delta):
 			controls_inverted = true
 		else:
 			controls_inverted = false
-
+	
 	# 5. Apply the inversion if active
 	if controls_inverted:
 		direction = direction * -1
+	
+	# --- HOLD-TO-ATTACK & JUMP ATTACK LOGIC ---
+	if Input.is_action_pressed("attack") and not is_copy:
+		if not is_attacking:
+			is_attacking = true
+			sprite.play("attack")
+			# Flip hitbox and sprite toward current movement or aim
+			if direction != 0:
+				sprite.flip_h = (direction < 0)
+				melee_hitbox.position.x = -30 if direction < 0 else 30
+			execute_melee_attack()
+			
+	# If we are attacking, force the character to stand still!
+	if is_attacking and is_on_floor():
+		direction = 0 
+	
+	# Animation logic
+	if not is_dead and not is_copy and not is_attacking:
+		if not is_on_floor():
+			if velocity.y < 50: 
+				sprite.play("jump")
+			else:
+				sprite.play("fall")
+		elif direction != 0:
+			sprite.play("run")
+			sprite.flip_h = (direction < 0) 
+			
+			# --- FLIP THE HITBOX ---
+			if direction < 0:
+				melee_hitbox.position.x = -30 
+			else:
+				melee_hitbox.position.x = 30
+		else:
+			sprite.play("idle")
 		
 	velocity.x = direction * speed
 	
@@ -68,6 +117,12 @@ func _process(delta):
 func paste_object(clipboard: ClipboardData):
 	if(clipboard == null):
 		return
+	
+	# Shoot animation
+	is_copy = true
+	sprite.play("shoot")
+	sprite.flip_h = (view_direction.x < 0)
+		
 	var scene = load(clipboard.scene_ref)
 	var type = clipboard.type
 	var data = clipboard.data
@@ -114,7 +169,7 @@ func paste_object(clipboard: ClipboardData):
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
 	view_direction = (mouse_pos - global_position).normalized()
-	copy_ray.target_position = view_direction * max_range  # max range
+	copy_ray.target_position = view_direction * max_range
 
 func update_aim_line():
 	var start = Vector2.ZERO
@@ -142,9 +197,44 @@ func try_copy():
 			var data = target.get_clipboard_data()
 			GameState.clipboard = data
 			print("Copied:", target.name)
+			
+			# --- TRIGGER COPY ANIMATION ---
+			is_copy = true
+			sprite.play("copy")
+			# Make sure we face the direction we are aiming!
+			sprite.flip_h = (view_direction.x < 0)
+			
 			copy_successful.emit(data)
 
 func apply_damage(damage:int):
+	if is_dead: return
+	
 	health -= 1
-	if(health == 0):
+	if(health <= 0):
+		is_dead = true
+		sprite.play("death")
 		print("YOU DIED")
+
+func _on_sprite_2d_animation_finished() -> void:
+	# Unlock copy/shoot
+	if sprite.animation == "copy" or sprite.animation == "shoot":
+		is_copy = false
+		
+	# Unlock the melee attack!
+	if sprite.animation == "attack":
+		is_attacking = false
+		
+func execute_melee_attack():
+	# Get a list of EVERYTHING currently touching the hitbox
+	var targets = melee_hitbox.get_overlapping_bodies()
+	
+	# DEBUG 1: Did the box even find ANYTHING?
+	print("Hitbox overlapping count: ", targets.size())
+	
+	for target in targets:
+		# DEBUG 2: What did we find?
+		print("Hitbox touched: ", target.name)
+		# Make sure it's an enemy (has health) and NOT the player hitting themselves!
+		if target.has_method("apply_damage") and target != self:
+			print("Player smacked: ", target.name)
+			target.apply_damage(50) # Deal 50 damage (or whatever your game needs)
