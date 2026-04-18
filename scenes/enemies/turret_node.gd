@@ -19,8 +19,10 @@ func _ready():
 
 # We will connect the Timer to this function next
 func _on_shoot_timer_timeout():
+
 	if is_freeze:
 		return
+
 	shoot()
 
 func shoot():

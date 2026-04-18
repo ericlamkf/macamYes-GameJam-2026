@@ -24,7 +24,7 @@ size = Vector2(47, 942)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwfav"]
 size = Vector2(255, 20)
 
-[node name="Node2D" type="Node2D" unique_id=1585743878]
+[node name="Main" type="Node2D" unique_id=1585743878]
 position = Vector2(945, 915)
 script = ExtResource("1_a8y0u")
 

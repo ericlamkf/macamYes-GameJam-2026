@@ -7,6 +7,7 @@
 size = Vector2(72, 29)
 
 [node name="TABEntity" type="Node2D" unique_id=1472873674]
+texture_filter = 1
 script = ExtResource("1_3504p")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]
