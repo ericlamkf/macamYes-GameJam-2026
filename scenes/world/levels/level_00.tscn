@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="8_gny22"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="11_1p1bg"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="12_5rt1s"]
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="13_kwcnb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jl6kl"]
 texture = ExtResource("2_0cklu")
@@ -633,7 +634,7 @@ height = 108.0
 [node name="TileMapDirection" type="TileMapLayer" parent="." unique_id=120962743]
 z_index = 2
 position = Vector2(0, -1.9073486e-06)
-tile_map_data = PackedByteArray("AAD+/wsAAAADAAcAAAD//wsAAAADAAcAAAAAAAsAAAADAAcAAAABAAsAAAADAAcAAAANAAsAAAADAAcAAAAOAAsAAAADAAcAAAAPAAsAAAADAAcAAAAQAAsAAAADAAcAAAAWAA4AAAADAAcAAAAXAA4AAAADAAcAAAAYAA4AAAADAAcAAAAVAA4AAAADAAcAAAAfAAwAAAADAAcAAAAgAAsAAAADAAcAAAAeAA0AAAADAAcAAAAiAAsAAAADAAcAAAAjAAsAAAADAAcAAAAkAAsAAAADAAcAAAAoAAsAAAAAAAcAAAAnAAsAAAAAAAcAAAA=")
+tile_map_data = PackedByteArray("AAD+/wsAAAADAAcAAAD//wsAAAADAAcAAAAAAAsAAAADAAcAAAABAAsAAAADAAcAAAANAAsAAAADAAcAAAAOAAsAAAADAAcAAAAPAAsAAAADAAcAAAAQAAsAAAADAAcAAAAWAA4AAAADAAcAAAAXAA4AAAADAAcAAAAfAAwAAAADAAcAAAAgAAsAAAADAAcAAAAeAA0AAAADAAcAAAAiAAsAAAADAAcAAAAjAAsAAAADAAcAAAAkAAsAAAADAAcAAAAoAAsAAAAAAAcAAAAnAAsAAAAAAAcAAAA=")
 tile_set = SubResource("TileSet_8vkic")
 
 [node name="TileMapSolid" type="TileMapLayer" parent="." unique_id=1469913308]
@@ -683,16 +684,21 @@ position = Vector2(850, 153)
 [node name="SyntaxCrawler" parent="." unique_id=1804172064 instance=ExtResource("8_gny22")]
 position = Vector2(268, 154)
 
-[node name="Player" parent="." unique_id=1421281123 instance=ExtResource("5_54gas")]
-position = Vector2(-29, 132)
+[node name="Projectile" parent="." unique_id=814716795 instance=ExtResource("12_5rt1s")]
+position = Vector2(823, 84)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=590821245]
+[node name="Player2" parent="." unique_id=1421281123 instance=ExtResource("5_54gas")]
+position = Vector2(-28, 121)
+speed = 125
+
+[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1823578748]
 offset = Vector2(0, -48)
 zoom = Vector2(5, 5)
 process_callback = 0
 
-[node name="CtrlEntity" parent="." unique_id=1472873674 instance=ExtResource("11_1p1bg")]
-position = Vector2(-2, 117)
+[node name="UI" parent="Player2/Camera2D" unique_id=369703887 instance=ExtResource("13_kwcnb")]
 
-[node name="Projectile" parent="." unique_id=814716795 instance=ExtResource("12_5rt1s")]
-position = Vector2(823, 84)
+[node name="CtrlEntity2" parent="." unique_id=1472873674 instance=ExtResource("11_1p1bg")]
+position = Vector2(-6, 94)
+
+[connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]

@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://6ko0ng811g8d" path="res://scenes/shared/KillZone.tscn" id="7_hgy7r"]
 [ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/Player.tscn" id="8_rhema"]
 [ext_resource type="PackedScene" uid="uid://bvt0bfqlq11ii" path="res://scenes/shared/checkpoint.tscn" id="9_l7gdi"]
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="12_mq7w0"]
+[ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="13_7rjm4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq7w0"]
 texture = ExtResource("1_i5hxh")
@@ -683,14 +685,22 @@ position = Vector2(852, -242)
 [node name="KillLine" parent="." unique_id=2101105798 instance=ExtResource("7_hgy7r")]
 position = Vector2(609, 147)
 
-[node name="Player" parent="." unique_id=1421281123 instance=ExtResource("8_rhema")]
-position = Vector2(520, -67)
+[node name="CEntity" parent="." unique_id=1472873674 instance=ExtResource("4_hgy7r")]
+position = Vector2(445, -13.000002)
+scale = Vector2(0.6, 0.6)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=4705653]
+[node name="Player2" parent="." unique_id=1421281123 instance=ExtResource("8_rhema")]
+position = Vector2(522, -70)
+speed = 125
+
+[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=262941158]
 offset = Vector2(0, -48)
 zoom = Vector2(5, 5)
 process_callback = 0
 
-[node name="CEntity" parent="." unique_id=1472873674 instance=ExtResource("4_hgy7r")]
-position = Vector2(445, -13.000002)
-scale = Vector2(0.6, 0.6)
+[node name="UI" parent="Player2/Camera2D" unique_id=369703887 instance=ExtResource("12_mq7w0")]
+
+[node name="CtrlEntity2" parent="." unique_id=792347138 instance=ExtResource("13_7rjm4")]
+position = Vector2(544, -97)
+
+[connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]

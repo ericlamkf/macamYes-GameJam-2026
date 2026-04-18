@@ -7,8 +7,12 @@ extends Node2D
 var player: CharacterBody2D
 var attached := true
 
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player") as CharacterBody2D
+
 func _process(delta):
 	if not player:
+		player = get_tree().get_first_node_in_group("player") as CharacterBody2D
 		return
 
 	check_detach()
