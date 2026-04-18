@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LosingControl"
-run/main_scene="uid://qn3n58pigbao"
+run/main_scene="uid://bbqj6y68lyca6"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

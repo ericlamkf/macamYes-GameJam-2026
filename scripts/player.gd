@@ -129,6 +129,7 @@ func _input(event):
 	if "c" in collected_keys and event.is_action_released("copy"):
 		try_copy()
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		GameState.reset_clipboard()
 		get_tree().reload_current_scene()
 
 func try_copy():
