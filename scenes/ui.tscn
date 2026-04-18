@@ -116,18 +116,18 @@ texture_progress_offset = Vector2(1, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=757156441]
 offset_left = 32.0
-offset_top = 64.0
+offset_top = 28.0
 offset_right = 352.0
-offset_bottom = 119.0
+offset_bottom = 83.0
 texture = SubResource("AtlasTexture_wm3ai")
 stretch_mode = 4
 
 [node name="BarContainer" type="TextureRect" parent="." unique_id=6118174]
 clip_contents = true
 offset_left = 82.0
-offset_top = 84.0
+offset_top = 48.0
 offset_right = 337.0
-offset_bottom = 114.0
+offset_bottom = 78.0
 texture = SubResource("AtlasTexture_8dubc")
 
 [node name="TextureRect" type="TextureRect" parent="BarContainer" unique_id=1075758928]

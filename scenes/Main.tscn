@@ -24,7 +24,7 @@ size = Vector2(47, 942)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwfav"]
 size = Vector2(255, 20)
 
-[node name="Main" type="Node2D" unique_id=1585743878]
+[node name="Main2" type="Node2D" unique_id=1585743878]
 position = Vector2(945, 915)
 script = ExtResource("1_a8y0u")
 
@@ -63,7 +63,6 @@ safe_margin = 0.1
 position = Vector2(-662, 31)
 collision_mask = 23
 safe_margin = 0.1
-speed = 20.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1043492172]
 collision_layer = 4
@@ -110,3 +109,4 @@ position = Vector2(-284, -78)
 shape = SubResource("RectangleShape2D_mwfav")
 
 [connection signal="copy_successful" from="Player" to="Player/Camera2D/UI" method="_on_player_copy_successful"]
+[connection signal="take_damage" from="Player" to="Player/Camera2D/UI" method="_on_player_take_damage"]

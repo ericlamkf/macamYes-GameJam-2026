@@ -69,3 +69,18 @@ func update_health_bar(current_health, max_health):
 	# Use a Tween for a smooth sliding effect
 	var tween = create_tween()
 	tween.tween_property(bar_sprite, "position:x", target_x, 0.3).set_trans(Tween.TRANS_LINEAR)
+
+func update_pressure_bar(current_health, max_health):
+	var health_ratio = float(current_health) / max_health
+	
+	# Calculate the target X position
+	# If health is 0, target_x is -container_width (hidden to the left)
+	# If health is 1.0, target_x is 0 (fully visible)
+	var target_x = (health_ratio - 1.0) * container_width
+	
+	# Use a Tween for a smooth sliding effect
+	var tween = create_tween()
+	tween.tween_property(bar_sprite, "position:x", target_x, 0.3).set_trans(Tween.TRANS_LINEAR)
+
+func _on_player_take_damage(health: int) -> void:
+	update_health_bar(health, 100)

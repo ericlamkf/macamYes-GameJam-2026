@@ -14,10 +14,15 @@ var base_gravity: int = 900
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
+var game_state
 
 signal copy_successful(data: ClipboardData)
+signal take_damage(health: int)
 
-@export var health: int = 4
+@export var health: int = 100
+
+func _ready():
+	game_state = GameState
 
 func _physics_process(delta):
 	# 1. Handle Gravity
@@ -100,7 +105,7 @@ func paste_object(clipboard: ClipboardData):
 		
 		instance.spawn_ally(clipboard.data["number_of_clone"] + 1)
 	elif type == "object":
-		instance.on_pasted(true)
+		instance.on_pasted(false)
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
@@ -134,6 +139,7 @@ func try_copy():
 			copy_successful.emit(data)
 
 func apply_damage(damage:int):
-	health -= 1
-	if(health == 0):
+	health -= damage
+	take_damage.emit(health)
+	if(health <= 0):
 		print("YOU DIED")
