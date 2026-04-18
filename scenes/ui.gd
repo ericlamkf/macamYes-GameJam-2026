@@ -15,9 +15,31 @@ func _ready() -> void:
 	deselect_frame($CombatFrame)
 	deselect_frame($ObjectFrame)
 	deselect_frame($EntityFrame)
-	
-	#$ClipboardFrame/RichTextLabel.visible = false
+
+	_restore_slots_from_state()
 	update_health_bar(100, 100)
+
+func _restore_slots_from_state() -> void:
+	var slot_map = {"projectile": 0, "object": 1, "enemy": 2}
+	for i in GameState.registers.size():
+		var data = GameState.registers[i]
+		if data == null:
+			continue
+		if data.type == "projectile":
+			$CombatFrame/RichTextLabel.visible = true
+		elif data.type == "object":
+			if data.sprite_frames:
+				$ObjectFrame/AnimatedSprite2D.sprite_frames = data.sprite_frames
+				$ObjectFrame/AnimatedSprite2D.play("default")
+				$ObjectFrame/AnimatedSprite2D.visible = true
+				$ObjectFrame/RichTextLabel.visible = false
+		elif data.type == "enemy":
+			if data.sprite_frames:
+				$EntityFrame/AnimatedSprite2D.sprite_frames = data.sprite_frames
+				$EntityFrame/AnimatedSprite2D.play("default")
+				$EntityFrame/AnimatedSprite2D.visible = true
+				$EntityFrame/RichTextLabel.visible = false
+	switch_frame(GameState.current_slot_index)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var glyphs = "01ABCDE#!?@&$"

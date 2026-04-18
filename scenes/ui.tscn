@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bksgst5258s55" path="res://assets/sprites/ui/progress.png" id="4_p7vwb"]
 [ext_resource type="FontFile" uid="uid://c8trj0aomcxtm" path="res://assets/fonts/glyphmesss.ttf" id="4_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://n6e6fvviwo87" path="res://assets/sprites/ui/healthbar.png" id="5_wm3ai"]
+[ext_resource type="PackedScene" uid="uid://dlsdlvqhj1cta" path="res://scenes/player/menu.tscn" id="6_8dubc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmy6f"]
 atlas = ExtResource("3_8dubc")
@@ -226,3 +227,5 @@ layout_mode = 0
 offset_right = 255.0
 offset_bottom = 30.0
 texture = SubResource("AtlasTexture_p7vwb")
+
+[node name="PauseMenu" parent="." unique_id=590104783 instance=ExtResource("6_8dubc")]
