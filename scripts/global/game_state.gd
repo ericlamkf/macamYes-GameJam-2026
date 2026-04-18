@@ -1,6 +1,6 @@
 extends Node
 
-const DEFAULT_ITEM_SCENE = "res://scenes/gravity_inverter.tscn"
+const DEFAULT_ITEM_SCENE = "res://scenes/objects/gravity_inverter.tscn"
 
 var clipboard = null
 var ctrl_attached = true

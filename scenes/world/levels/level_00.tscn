@@ -6,16 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://d06u5okj1vaaf" path="res://assets/tilesets/tiles/background.jpg" id="3_des34"]
 [ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="3_ma7l0"]
 [ext_resource type="PackedScene" uid="uid://6ko0ng811g8d" path="res://scenes/shared/KillZone.tscn" id="4_vd6wv"]
-[ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/Player.tscn" id="5_54gas"]
+[ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/player/player.tscn" id="5_54gas"]
 [ext_resource type="PackedScene" uid="uid://bguopu8xnngha" path="res://scenes/pickups/tab_entity.tscn" id="6_5rt1s"]
 [ext_resource type="PackedScene" uid="uid://bvt0bfqlq11ii" path="res://scenes/shared/checkpoint.tscn" id="6_8ldck"]
-[ext_resource type="Script" uid="uid://d22n5gfdlybdt" path="res://scripts/world/level_exit.gd" id="6_jl6kl"]
+[ext_resource type="Script" path="res://scripts/world/level_exit.gd" id="6_jl6kl"]
 [ext_resource type="PackedScene" uid="uid://0rrq76dn7mg4" path="res://scenes/pickups/v_entity.tscn" id="7_v00"]
-[ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="8_gny22"]
+[ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/enemies/syntax_crawler.tscn" id="8_gny22"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="11_1p1bg"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="12_5rt1s"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="13_kwcnb"]
-[ext_resource type="PackedScene" path="res://scenes/capacitor.tscn" id="15_1p1bg"]
+[ext_resource type="PackedScene" uid="uid://14gfhr8pc58t" path="res://scenes/ui.tscn" id="13_kwcnb"]
+[ext_resource type="PackedScene" uid="uid://dbrwmmdtxyth3" path="res://scenes/objects/gravity_inverter.tscn" id="16_5rt1s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jl6kl"]
 texture = ExtResource("2_0cklu")
@@ -696,7 +696,7 @@ position = Vector2(193.99998, 146)
 scale = Vector2(0.6, 0.6)
 
 [node name="SyntaxCrawler2" parent="." unique_id=717656759 instance=ExtResource("8_gny22")]
-position = Vector2(-120, 146)
+position = Vector2(-94, 158)
 
 [node name="SyntaxCrawler3" parent="." unique_id=1585242179 instance=ExtResource("8_gny22")]
 position = Vector2(850, 153)
@@ -721,7 +721,7 @@ process_callback = 0
 [node name="CtrlEntity2" parent="." unique_id=2053566812 instance=ExtResource("11_1p1bg")]
 position = Vector2(-6, 94)
 
-[node name="Capacitor" parent="." unique_id=440597128 instance=ExtResource("15_1p1bg")]
-position = Vector2(26, 160)
+[node name="GravityInverter" parent="." unique_id=440597128 instance=ExtResource("16_5rt1s")]
+position = Vector2(-132, 160)
 
 [connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]
