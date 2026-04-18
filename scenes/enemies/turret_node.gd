@@ -5,11 +5,12 @@ extends EnemyBase
 
 @onready var muzzle = $Muzzle
 @onready var sprite = $Sprite2D
+@onready var boom_sound = $BoomSound
 
-# Tells Dev A's system this enemy can be copy-pasted
 @export var is_copyable: bool = true 
 
 var facing_direction
+var is_dead = false
 
 func _ready():
 	# Make sure we run EnemyBase's ready function so health is set!
@@ -19,10 +20,11 @@ func _ready():
 
 # We will connect the Timer to this function next
 func _on_shoot_timer_timeout():
-
 	if is_freeze:
 		return
-
+	
+	sprite.play("attack")
+	boom_sound.play()
 	shoot()
 
 func shoot():
@@ -57,3 +59,29 @@ func _physics_process(delta: float):
 	velocity.y = clamp(velocity.y, -900, 900)
 	
 	move_and_slide()
+
+func _on_sprite_2d_animation_finished(action: StringName) -> void:
+	if action == "attack":
+		sprite.play("idle")
+
+# 5. Handle the Death Sequence
+func die():
+	if is_dead:
+		return # Prevents the "Shotgun Bug" crash
+	is_dead = true
+	
+	# Stop gravity and logic
+	set_physics_process(false)
+	
+	# Stop the shooting timer so a dead turret doesn't keep firing
+	if has_node("ShootTimer"):
+		$ShootTimer.stop() 
+		
+	# Disable the hitbox safely so the player can walk past it
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+	
+	# Play the death animation, wait for it to finish, then delete the node
+	sprite.play("death")
+	await sprite.animation_finished
+	queue_free()
