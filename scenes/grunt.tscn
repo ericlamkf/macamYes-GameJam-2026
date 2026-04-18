@@ -51,14 +51,14 @@ size = Vector2(48, 27)
 size = Vector2(36, 21)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8odd"]
-radius = 118.0
+radius = 180.04443
 
-[node name="Enemy" unique_id=717656759 instance=ExtResource("1_usvl4")]
+[node name="Grunt" unique_id=717656759 instance=ExtResource("1_usvl4")]
 script = ExtResource("2_6upo6")
 speed = 100.0
 projectile_scene = ExtResource("3_t8odd")
-shoot_cooldown = 1.0
-aim_ready_time = 1.0
+shoot_cooldown = 0.5
+aim_ready_time = 0.5
 max_health = 80
 
 [node name="Sprite2D" parent="." index="0" unique_id=739483909]
@@ -83,10 +83,12 @@ autostart = true
 [node name="RayCast2D" type="RayCast2D" parent="." index="5" unique_id=1130378493]
 position = Vector2(0, -8)
 enabled = false
+collision_mask = 33
 
 [node name="DetectionArea" type="Area2D" parent="." index="6" unique_id=32441649]
 position = Vector2(0, -8)
 collision_layer = 0
+collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0" unique_id=1105360225]
 shape = SubResource("CircleShape2D_t8odd")

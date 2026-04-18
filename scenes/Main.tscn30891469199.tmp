@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://dy2jom3vb7waa"]
+
+[ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scripts/main.gd" id="1_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="2_tefeu"]
+[ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/Player.tscn" id="3_o6xl0"]
+[ext_resource type="Script" uid="uid://c2thwtk4edlb0" path="res://scenes/ui.gd" id="4_mwfav"]
+[ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="4_tipki"]
+[ext_resource type="Texture2D" uid="uid://cam8jd888aex" path="res://assets/sprites/ui/helth bar.png" id="4_wp0k4"]
+[ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="5_85g3d"]
+[ext_resource type="Texture2D" uid="uid://dujpurx6ga0fo" path="res://assets/sprites/ui/block_placeholder.png" id="5_bjd11"]
+[ext_resource type="Texture2D" uid="uid://bksgst5258s55" path="res://assets/sprites/ui/progress.png" id="6_qmy6f"]
+[ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/syntax_crawler.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://gesfn4ofg272" path="res://scenes/turret_node.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dcawbu40era7q" path="res://scenes/grunt.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://bux0v1gkisxno" path="res://scenes/crusher.tscn" id="9_q8u5g"]
+[ext_resource type="PackedScene" uid="uid://cpu7imeg1um2j" path="res://scenes/capacitor.tscn" id="10_lhr70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjd11"]
+atlas = ExtResource("4_wp0k4")
+region = Rect2(2, 4, 30, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmy6f"]
+atlas = ExtResource("5_bjd11")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="Animation" id="Animation_mwfav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 22, 22)]
+}
+
+[sub_resource type="Animation" id="Animation_3p2gp"]
+resource_name = "idle_icon"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0009999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(1, 0, 22, 22), Rect2(1, 0, 22, 22), Rect2(25, 0, 22, 22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvmbd"]
+_data = {
+&"RESET": SubResource("Animation_mwfav"),
+&"idle_icon": SubResource("Animation_3p2gp")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwfav"]
+atlas = ExtResource("6_qmy6f")
+region = Rect2(0, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p2gp"]
+atlas = ExtResource("6_qmy6f")
+region = Rect2(33, 1, 30, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rarhs"]
+size = Vector2(1703.5, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
+size = Vector2(47, 942)
+
+[node name="Node2D" type="Node2D" unique_id=1585743878]
+position = Vector2(945, 915)
+script = ExtResource("1_tbgi4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1490893840]
+position = Vector2(6, 72)
+scale = Vector2(13.7734375, 0.6171875)
+texture = ExtResource("2_tefeu")
+
+[node name="Player" parent="." unique_id=1421281123 instance=ExtResource("3_o6xl0")]
+position = Vector2(-406, 19)
+speed = 125
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=304486105]
+offset = Vector2(0, -48)
+zoom = Vector2(5, 5)
+process_callback = 0
+
+[node name="UI" type="CanvasLayer" parent="Player/Camera2D" unique_id=234474098]
+script = ExtResource("4_mwfav")
+
+[node name="HealthBar" type="TextureRect" parent="Player/Camera2D/UI" unique_id=323617710]
+offset_right = 300.0
+offset_bottom = 320.0
+texture = SubResource("AtlasTexture_bjd11")
+
+[node name="ClipboardFrame" type="TextureRect" parent="Player/Camera2D/UI" unique_id=974020080]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_bottom = 180.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_qmy6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Camera2D/UI/ClipboardFrame" unique_id=1780001024]
+libraries/ = SubResource("AnimationLibrary_cvmbd")
+autoplay = &"idle_icon"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Camera2D/UI/ClipboardFrame" unique_id=552408676]
+position = Vector2(100, 90)
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/Camera2D/UI" unique_id=1511257186]
+offset_right = 384.0
+offset_bottom = 240.0
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 130
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="PressureBar" type="TextureProgressBar" parent="Player/Camera2D/UI/MarginContainer" unique_id=1970757423]
+layout_mode = 2
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_mwfav")
+texture_progress = SubResource("AtlasTexture_3p2gp")
+texture_progress_offset = Vector2(1, 1)
+
+[node name="CtrlEntity" parent="." unique_id=908876274 instance=ExtResource("4_tipki")]
+position = Vector2(-364, -33)
+
+[node name="Projectile" parent="." unique_id=1952188133 instance=ExtResource("5_85g3d")]
+position = Vector2(-478, -12)
+
+[node name="SyntaxCrawler" parent="." unique_id=717656759 instance=ExtResource("6_tefeu")]
+position = Vector2(-185, 32)
+
+[node name="TurretNode" parent="." unique_id=767529118 instance=ExtResource("7_o6xl0")]
+position = Vector2(-239, 33)
+collision_mask = 23
+
+[node name="Enemy" parent="." unique_id=1951649866 instance=ExtResource("8_tipki")]
+position = Vector2(-662, 31)
+collision_mask = 23
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1043492172]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=763297074]
+position = Vector2(-1, 47)
+shape = SubResource("RectangleShape2D_rarhs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1828232406]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=177771649]
+position = Vector2(-877.5, -438)
+shape = SubResource("RectangleShape2D_tipki")
+
+[node name="CopyableObject" parent="." unique_id=449845868 instance=ExtResource("9_q8u5g")]
+position = Vector2(-382, 33)
+
+[node name="Capacitor" parent="." unique_id=440597128 instance=ExtResource("10_lhr70")]
+position = Vector2(-359, 32)
+collision_mask = 15
+
+[node name="Projectile2" parent="." unique_id=814716795 instance=ExtResource("5_85g3d")]
+position = Vector2(-452, -12)
+corrupted = false
+
+[connection signal="copy_successful" from="Player" to="Player/Camera2D/UI" method="_on_player_copy_successful"]

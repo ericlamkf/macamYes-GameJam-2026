@@ -75,7 +75,7 @@ size = Vector2(18, 19)
 size = Vector2(18, 19)
 
 [node name="Player" type="CharacterBody2D" unique_id=1421281123 groups=["player"]]
-collision_mask = 6
+collision_mask = 54
 script = ExtResource("1_v6fml")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2014346780]
@@ -89,7 +89,7 @@ shape = SubResource("RectangleShape2D_g2els")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1238663318]
 position = Vector2(0, -9)
-collision_mask = 14
+collision_mask = 62
 collide_with_areas = true
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1179121475]
@@ -99,7 +99,8 @@ width = 1.0
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1458115560]
 position = Vector2(0, -9)
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=702342195]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=702342195 groups=["player"]]
+collision_mask = 0
 script = ExtResource("3_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=665276701]

@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://14gfhr8pc58t"]
+
+[ext_resource type="Script" uid="uid://c2thwtk4edlb0" path="res://scenes/ui.gd" id="1_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://cam8jd888aex" path="res://assets/sprites/ui/helth bar.png" id="2_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://dujpurx6ga0fo" path="res://assets/sprites/ui/block_placeholder.png" id="3_8dubc"]
+[ext_resource type="Texture2D" uid="uid://bksgst5258s55" path="res://assets/sprites/ui/progress.png" id="4_p7vwb"]
+[ext_resource type="FontFile" uid="uid://c8trj0aomcxtm" path="res://assets/fonts/glyphmesss.ttf" id="4_wm3ai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjd11"]
+atlas = ExtResource("2_wm3ai")
+region = Rect2(2, 4, 30, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmy6f"]
+atlas = ExtResource("3_8dubc")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="Animation" id="Animation_mwfav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 22, 22)]
+}
+
+[sub_resource type="Animation" id="Animation_3p2gp"]
+resource_name = "idle_icon"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0009999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2(1, 0, 22, 22), Rect2(1, 0, 22, 22), Rect2(25, 0, 22, 22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvmbd"]
+_data = {
+&"RESET": SubResource("Animation_mwfav"),
+&"idle_icon": SubResource("Animation_3p2gp")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwfav"]
+atlas = ExtResource("4_p7vwb")
+region = Rect2(0, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p2gp"]
+atlas = ExtResource("4_p7vwb")
+region = Rect2(33, 1, 30, 6)
+
+[node name="UI" type="CanvasLayer" unique_id=369703887]
+script = ExtResource("1_gdt2y")
+
+[node name="HealthBar" type="TextureRect" parent="." unique_id=1889892737]
+offset_right = 300.0
+offset_bottom = 320.0
+texture = SubResource("AtlasTexture_bjd11")
+
+[node name="ClipboardFrame" type="TextureRect" parent="." unique_id=458945473]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_bottom = 180.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_qmy6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ClipboardFrame" unique_id=1886221949]
+libraries/ = SubResource("AnimationLibrary_cvmbd")
+autoplay = &"idle_icon"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ClipboardFrame" unique_id=1414853849]
+position = Vector2(90.00003, 89)
+scale = Vector2(4.1, 4.1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ClipboardFrame" unique_id=23550369]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 66.0
+offset_right = 172.0
+offset_bottom = 119.0
+theme_override_fonts/normal_font = ExtResource("4_wm3ai")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+scroll_active = false
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=326011349]
+offset_right = 384.0
+offset_bottom = 240.0
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 130
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="PressureBar" type="TextureProgressBar" parent="MarginContainer" unique_id=708278108]
+layout_mode = 2
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_mwfav")
+texture_progress = SubResource("AtlasTexture_3p2gp")
+texture_progress_offset = Vector2(1, 1)

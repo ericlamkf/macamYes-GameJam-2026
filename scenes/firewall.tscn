@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://de0spj71s83ce"]
+
+[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/copyable_object.tscn" id="1_6a1qj"]
+[ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="2_1am1r"]
+[ext_resource type="Script" uid="uid://vkawb353agkr" path="res://scenes/firewall.gd" id="2_4v7oo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v7oo"]
+atlas = ExtResource("2_1am1r")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mnvpy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v7oo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14yw4"]
+size = Vector2(21, 21)
+
+[node name="Firewall" unique_id=440597128 instance=ExtResource("1_6a1qj")]
+script = ExtResource("2_4v7oo")
+max_integrity = 200
+object_id = "firewall"
+timeout = 30
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=849470058]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_mnvpy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=991634448]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("RectangleShape2D_14yw4")

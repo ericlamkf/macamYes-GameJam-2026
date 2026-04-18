@@ -10,3 +10,5 @@ class_name ClipboardData
 
 # Any extra stats speed, health, direction to retain when pasting
 @export var data: Dictionary = {}
+
+@export var sprite_frames: SpriteFrames
