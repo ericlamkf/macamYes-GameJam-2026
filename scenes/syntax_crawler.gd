@@ -87,7 +87,7 @@ func spawn_ally(number_of_clone:int):
 	$Hurtbox.remove_from_group("enemies")
 	
 	await get_tree().create_timer(ally_timeout).timeout
-	queue_free()
+	die()
 
 # --- ANIMATION TRIGGER LOGIC ---
 
