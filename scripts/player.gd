@@ -214,6 +214,14 @@ func apply_damage(damage:int):
 		is_dead = true
 		sprite.play("death")
 		print("YOU DIED")
+		
+		# --- GHOST MODE ---
+		# Turn off the player's main collision layer so enemies walk right past the body
+		set_collision_layer_value(1, false) 
+		
+		# If you have a specific "Hurtbox" Area2D on your player, turn it off too!
+		$Hurtbox.set_deferred("monitorable", false)
+		$Hurtbox.set_deferred("monitoring", false)
 
 func _on_sprite_2d_animation_finished() -> void:
 	# Unlock copy/shoot
