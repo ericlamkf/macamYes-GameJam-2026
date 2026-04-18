@@ -166,28 +166,21 @@ max_health = 25
 [node name="Sprite2D" parent="." index="0" unique_id=739483909]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_6smrp")
-animation = &"death"
+animation = &"attack"
 autoplay = "default"
-frame = 7
-frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1265366021]
-visible = false
 position = Vector2(-1, -8)
 shape = SubResource("RectangleShape2D_jum1j")
 
 [node name="Hitbox" parent="." index="2" unique_id=939704740]
-visible = false
 collision_mask = 33
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=302478187]
 position = Vector2(-1, 11.5)
 shape = SubResource("RectangleShape2D_x7ffw")
 
-[node name="Hurtbox" parent="." index="3" unique_id=1972565131]
-visible = false
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=935797810]
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1972565131) index="0" unique_id=935797810]
 position = Vector2(-1, 14.5)
 shape = SubResource("RectangleShape2D_cajrf")
 
