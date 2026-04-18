@@ -11,10 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://6ko0ng811g8d" path="res://scenes/shared/KillZone.tscn" id="7_hgy7r"]
 [ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/Player.tscn" id="8_rhema"]
 [ext_resource type="PackedScene" uid="uid://bvt0bfqlq11ii" path="res://scenes/shared/checkpoint.tscn" id="9_l7gdi"]
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="12_mq7w0"]
+[ext_resource type="PackedScene" uid="uid://14gfhr8pc58t" path="res://scenes/ui.tscn" id="12_mq7w0"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="13_7rjm4"]
 [ext_resource type="PackedScene" uid="uid://bguopu8xnngha" path="res://scenes/pickups/tab_entity.tscn" id="13_jxvcu"]
-[ext_resource type="PackedScene" uid="uid://dmho7xb1nmuus" path="res://scenes/pickups/s_entity.tscn" id="15_jxvcu"]
+[ext_resource type="PackedScene" uid="uid://gesfn4ofg272" path="res://scenes/turret_node.tscn" id="16_oy7ii"]
+[ext_resource type="PackedScene" uid="uid://dcawbu40era7q" path="res://scenes/grunt.tscn" id="17_8j2nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq7w0"]
 texture = ExtResource("1_i5hxh")
@@ -661,10 +662,6 @@ position = Vector2(496.4999, -190.50009)
 scale = Vector2(1.9248044, 2.0491157)
 texture = ExtResource("3_3tp2u")
 
-[node name="SEntity" parent="." unique_id=1464947858 instance=ExtResource("15_jxvcu")]
-position = Vector2(479.00003, -12.9999695)
-scale = Vector2(0.64, 0.64)
-
 [node name="SyntaxCrawler_A" parent="." unique_id=717656759 instance=ExtResource("6_8p1rb")]
 position = Vector2(403, -36)
 
@@ -696,8 +693,11 @@ rotation = -1.5707964
 position = Vector2(445, -13.000002)
 scale = Vector2(0.6, 0.6)
 
-[node name="Checkpoint_tscn" parent="." unique_id=677248382 instance=ExtResource("9_l7gdi")]
+[node name="Checkpoint_tscn2" parent="." unique_id=677248382 instance=ExtResource("9_l7gdi")]
 position = Vector2(-80, -38)
+
+[node name="Checkpoint_tscn" parent="." unique_id=443245813 instance=ExtResource("9_l7gdi")]
+position = Vector2(520, -73)
 
 [node name="Player2" parent="." unique_id=1421281123 instance=ExtResource("8_rhema")]
 position = Vector2(-80, -29)
@@ -727,5 +727,17 @@ next_level_path = "res://scenes/world/levels/level_02.tscn"
 position = Vector2(0, -2)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_4lpfl")
+
+[node name="TurretNode" parent="." unique_id=635127827 instance=ExtResource("16_oy7ii")]
+position = Vector2(-55, -240)
+
+[node name="TurretNode2" parent="." unique_id=263506998 instance=ExtResource("16_oy7ii")]
+position = Vector2(-128, -369)
+
+[node name="Grunt" parent="." unique_id=216267180 instance=ExtResource("17_8j2nj")]
+position = Vector2(676, -212)
+
+[node name="Grunt2" parent="." unique_id=738765514 instance=ExtResource("17_8j2nj")]
+position = Vector2(321, -289)
 
 [connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]

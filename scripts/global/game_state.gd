@@ -7,6 +7,7 @@ var ctrl_attached = true
 var offhand_mode = "C"  # or "V"
 var spawn_position: Vector2 = Vector2.ZERO
 var ctrl_position: Vector2 = Vector2.ZERO
+var ctrl_position_locked: bool = false
 var collected_keys: Array[String] = []
 
 func _ready() -> void:
