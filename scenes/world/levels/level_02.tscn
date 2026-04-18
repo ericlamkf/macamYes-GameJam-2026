@@ -672,8 +672,10 @@ tile_set = SubResource("TileSet_hgy7r")
 position = Vector2(-59, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1519059609]
-modulate = Color(0.65882355, 0.5019608, 0.88235295, 0.63529414)
+modulate = Color(0.65882355, 0.5019608, 0.88235295, 0.8666667)
 z_index = -2
+texture_filter = 1
+texture_repeat = 3
 position = Vector2(496.4999, -190.50009)
 scale = Vector2(1.9248044, 2.0491157)
 texture = ExtResource("3_b1tps")
@@ -686,7 +688,7 @@ position = Vector2(507, -566)
 rotation = -3.1415925
 
 [node name="KillLine3" parent="." unique_id=1743046948 instance=ExtResource("6_sds6h")]
-position = Vector2(-359, -123)
+position = Vector2(-273, -116)
 rotation = 1.5707964
 
 [node name="KillLine4" parent="." unique_id=1941835997 instance=ExtResource("6_sds6h")]

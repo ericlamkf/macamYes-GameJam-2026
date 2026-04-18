@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b3t1xrvo36vu8" path="res://scenes/enemies/grunt.gd" id="2_6upo6"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_t8odd"]
 [ext_resource type="Texture2D" uid="uid://dwynb85t5rwec" path="res://assets/sprites/enemies/burn3r.png" id="4_jjune"]
-[ext_resource type="AudioStream" uid="uid://dit0mvmhauv5i" path="res://assets/audio/sfx/enemies/boom.wav" id="5_wci2o"]
+[ext_resource type="AudioStream" uid="uid://etq10tvy5uum" path="res://assets/audio/music/biubiubiu.mp3" id="5_hvqng"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjune"]
 atlas = ExtResource("4_jjune")
@@ -226,8 +226,11 @@ shape = SubResource("CircleShape2D_t8odd")
 [node name="Marker2D" type="Marker2D" parent="." index="7" unique_id=2030095144]
 position = Vector2(16, -7)
 
-[node name="BoomSound" type="AudioStreamPlayer" parent="." index="8" unique_id=39088935]
-stream = ExtResource("5_wci2o")
+[node name="BoomSound" type="AudioStreamPlayer2D" parent="." index="8" unique_id=1351771833]
+stream = ExtResource("5_hvqng")
+autoplay = true
+max_distance = 1010.0
+attenuation = 1.9318731
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_body_exited"]

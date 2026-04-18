@@ -136,3 +136,7 @@ func select_frame(texture: TextureRect):
 	
 func deselect_frame(texture: TextureRect):
 	texture.modulate = Color(0.6, 0.6, 0.6, 1.0)
+
+
+func _on_player_2_take_damage(health: int) -> void:
+	update_health_bar(health,100)
