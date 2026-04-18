@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://coupsxo80453g" path="res://scenes/pickups/tab_entity.gd" id="1_3504p"]
 [ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="2_3504p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsegu"]
-size = Vector2(72, 29)
-
 [node name="TABEntity" type="Node2D" unique_id=1472873674]
 texture_filter = 1
 script = ExtResource("1_3504p")
@@ -16,10 +13,3 @@ scale = Vector2(2.5937502, 2.2449048)
 texture = ExtResource("2_3504p")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 16)
-
-[node name="Area2D" type="Area2D" parent="." unique_id=206881073]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1246463704]
-position = Vector2(1, 2.5)
-shape = SubResource("RectangleShape2D_jsegu")

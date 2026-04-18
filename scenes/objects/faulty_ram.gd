@@ -43,7 +43,9 @@ func burst():
 	
 	# Damage Calculation
 	var bodies = explosion_area.get_overlapping_bodies()
+	print("body:" + str(bodies))
 	for body in bodies:
+		print(body)
 		# Check if it's the player, an enemy, or another copyable object
 		if body == self: continue
 		

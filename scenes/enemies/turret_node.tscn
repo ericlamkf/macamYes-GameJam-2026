@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gesfn4ofg272"]
 
-[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_ux45s"]
-[ext_resource type="Script" uid="uid://c1uvy3k7kcvxp" path="res://turret_node.gd" id="2_25ock"]
+[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemies/enemy.tscn" id="1_ux45s"]
+[ext_resource type="Script" uid="uid://c1uvy3k7kcvxp" path="res://scenes/enemies/turret_node.gd" id="2_25ock"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_25ock"]
 [ext_resource type="Texture2D" uid="uid://cs1yo6hbymee2" path="res://assets/sprites/enemies/m2rksman.png" id="4_mopol"]
 [ext_resource type="AudioStream" uid="uid://dit0mvmhauv5i" path="res://assets/audio/sfx/enemies/boom.wav" id="5_xdp2a"]

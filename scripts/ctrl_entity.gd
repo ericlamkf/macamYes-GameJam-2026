@@ -9,6 +9,8 @@ var attached := true
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as CharacterBody2D
+	if GameState.spawn_position != Vector2.ZERO:
+		global_position = GameState.spawn_position
 
 func _process(delta):
 	if not player:

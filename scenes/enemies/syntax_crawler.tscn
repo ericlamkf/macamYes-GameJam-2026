@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkyu8aq86exwx"]
 
-[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_1lgvh"]
-[ext_resource type="Script" uid="uid://dj3h4pxnkmo4f" path="res://scenes/syntax_crawler.gd" id="2_tsdx6"]
+[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemies/enemy.tscn" id="1_1lgvh"]
+[ext_resource type="Script" uid="uid://dj3h4pxnkmo4f" path="res://scenes/enemies/syntax_crawler.gd" id="2_tsdx6"]
 [ext_resource type="Texture2D" uid="uid://cvyoxp3dwe3j3" path="res://assets/sprites/enemies/dr0ne.png" id="3_jum1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jum1j"]
@@ -152,13 +152,12 @@ animations = [{
 size = Vector2(14, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ffw"]
-size = Vector2(32, 25)
+size = Vector2(32, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cajrf"]
 size = Vector2(20, 19)
 
 [node name="SyntaxCrawler" unique_id=717656759 instance=ExtResource("1_1lgvh")]
-collision_mask = 55
 script = ExtResource("2_tsdx6")
 speed = 50.0
 max_health = 25
@@ -177,7 +176,7 @@ shape = SubResource("RectangleShape2D_jum1j")
 collision_mask = 33
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=302478187]
-position = Vector2(-1, 11.5)
+position = Vector2(-1, 17)
 shape = SubResource("RectangleShape2D_x7ffw")
 
 [node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1972565131) index="0" unique_id=935797810]

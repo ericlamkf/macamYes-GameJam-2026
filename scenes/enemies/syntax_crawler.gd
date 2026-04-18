@@ -40,6 +40,7 @@ func _physics_process(delta):
 	sprite.play("default")
 	move_and_slide()
 
+
 func flip_direction():
 	direction *= -1
 	
@@ -97,17 +98,10 @@ func start_attack():
 	if not is_attacking and not is_dead:
 		is_attacking = true
 		sprite.play("attack")
-		
-# Override the damage function to check for death
-func apply_damage(amount: int):
-	# Assuming EnemyBase has current_health or similar
-	current_health -= amount
-	print("Crawler Health: ", current_health)
-	
-	if current_health <= 0 and not is_dead:
-		die()
 
+# EnemyBase handles apply_damage and calls this automatically!
 func die():
+	if is_dead: return # Shotgun bug prevention
 	is_dead = true
 	sprite.play("death")
 	

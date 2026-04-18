@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://d0r1d4bh06btf"]
+
+[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_biq4e"]
+[ext_resource type="Script" uid="uid://cqhqp1eh4elap" path="res://scenes/firewall_brute.gd" id="2_nxh2f"]
+[ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_1fgek"]
+[ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="3_nxh2f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifkv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nxh2f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxh2f"]
+size = Vector2(44.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5hjw"]
+size = Vector2(50, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fgek"]
+size = Vector2(50, 34)
+
+[node name="FirewallBrute" unique_id=717656759 instance=ExtResource("1_biq4e")]
+script = ExtResource("2_nxh2f")
+patrol_speed = 40.0
+charge_speed = 120.0
+projectile_scene = ExtResource("3_1fgek")
+is_copyable = true
+
+[node name="Sprite2D" parent="." index="0" unique_id=739483909]
+position = Vector2(14, -16)
+scale = Vector2(0.28125, 0.25)
+sprite_frames = SubResource("SpriteFrames_ifkv4")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1265366021]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_nxh2f")
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(939704740) index="0" unique_id=302478187]
+position = Vector2(15, 7)
+shape = SubResource("RectangleShape2D_a5hjw")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1972565131) index="0" unique_id=935797810]
+position = Vector2(15, 7)
+shape = SubResource("RectangleShape2D_1fgek")
+
+[node name="ShootTimer" type="Timer" parent="." index="4" unique_id=200258489]
+wait_time = 5.0
+autostart = true
+
+[node name="Muzzle" type="Marker2D" parent="." index="5" unique_id=1887863333]
+position = Vector2(-16, -16)
+
+[node name="WallCheck" type="RayCast2D" parent="." index="6" unique_id=1411430568]
+position = Vector2(-4, -16)
+target_position = Vector2(-48, 0)
+collision_mask = 4
+
+[node name="LedgeCheck" type="RayCast2D" parent="." index="7" unique_id=1910356734]
+collision_mask = 4
+
+[node name="PlayerVision" type="RayCast2D" parent="." index="8" unique_id=337781857]
+target_position = Vector2(-300, 0)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
