@@ -103,6 +103,8 @@ func update_aim_line():
 func _input(event):
 	if event.is_action_released("copy"):
 		try_copy()
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		get_tree().reload_current_scene()
 
 func try_copy():
 	if copy_ray.is_colliding():
