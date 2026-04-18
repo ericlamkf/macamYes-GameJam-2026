@@ -17,6 +17,18 @@ var view_direction
 
 signal copy_successful(data: ClipboardData)
 
+var collected_keys: Array[String] = []
+
+func _ready() -> void:
+	collected_keys = GameState.collected_keys.duplicate()
+	if GameState.spawn_position != Vector2.ZERO:
+		global_position = GameState.spawn_position
+
+func collect_key(key: String) -> void:
+	if key not in collected_keys:
+		collected_keys.append(key)
+		GameState.collected_keys = collected_keys
+
 @export var health: int = 4
 
 func _physics_process(delta):
@@ -48,12 +60,12 @@ func _physics_process(delta):
 
 func _process(delta):
 	update_copy_ray()
-	if(Input.is_action_pressed("copy")):
+	if "c" in collected_keys and Input.is_action_pressed("copy"):
 		update_aim_line()
 	else:
 		aim_line.points = []
-		
-	if(Input.is_action_just_pressed("paste")):
+
+	if "v" in collected_keys and Input.is_action_just_pressed("paste"):
 		paste_object(GameState.clipboard)
 
 func paste_object(clipboard: ClipboardData):
@@ -117,8 +129,11 @@ func update_aim_line():
 	aim_line.points = [start, end]
 
 func _input(event):
-	if event.is_action_released("copy"):
+	if "c" in collected_keys and event.is_action_released("copy"):
 		try_copy()
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		GameState.reset_clipboard()
+		get_tree().reload_current_scene()
 
 func try_copy():
 	if copy_ray.is_colliding():

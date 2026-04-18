@@ -4,6 +4,8 @@ extends CanvasLayer
 func _ready() -> void:
 	$ClipboardFrame/AnimatedSprite2D.visible = false
 	$ClipboardFrame/RichTextLabel.visible = false
+	if GameState.clipboard != null:
+		_on_player_copy_successful(GameState.clipboard)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
