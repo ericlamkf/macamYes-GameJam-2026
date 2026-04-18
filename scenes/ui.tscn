@@ -195,17 +195,11 @@ bbcode_enabled = true
 text = "[center]Entity[/center]"
 scroll_active = false
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=326011349]
-offset_right = 384.0
-offset_bottom = 240.0
-size_flags_horizontal = 0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 130
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 64
-
-[node name="PressureBar" type="TextureProgressBar" parent="MarginContainer" unique_id=708278108]
-layout_mode = 2
+[node name="PressureBar" type="TextureProgressBar" parent="." unique_id=708278108]
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 352.0
+offset_bottom = 176.0
 nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_mwfav")
 texture_progress = SubResource("AtlasTexture_3p2gp")
