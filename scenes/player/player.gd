@@ -14,7 +14,7 @@ var base_gravity: int = 900
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
-var game_state
+var game_state: GameState
 
 signal copy_successful(data: ClipboardData)
 signal take_damage(health: int)
@@ -59,7 +59,7 @@ func _process(delta):
 		aim_line.points = []
 		
 	if(Input.is_action_just_pressed("paste")):
-		paste_object(GameState.clipboard)
+		paste_object(game_state.clipboard)
 
 func paste_object(clipboard: ClipboardData):
 	if(clipboard == null):
@@ -124,6 +124,17 @@ func update_aim_line():
 func _input(event):
 	if event.is_action_released("copy"):
 		try_copy()
+# Q to move Left, E to move Right
+	if event.is_action_pressed("prev_slot"): # Map 'Q'
+		cycle_slots(-1)
+	elif event.is_action_pressed("next_slot"): # Map 'E'
+		cycle_slots(1)
+
+func cycle_slots(direction: int):
+	# Using the 'wrap' function is the cleanest way to do this in Godot
+	game_state.current_slot_index = posmod(game_state.current_slot_index + direction, game_state.slot_order.size())
+	game_state.clipboard = game_state.registers[game_state.current_slot_index]
+
 
 func try_copy():
 	if copy_ray.is_colliding():
@@ -134,7 +145,14 @@ func try_copy():
 			target = target.get_parent()
 		if target and target.has_method("get_clipboard_data"):
 			var data = target.get_clipboard_data()
-			GameState.clipboard = data
+			if(data.type == "projectile"):
+				game_state.current_slot_index = 0
+			elif(data.type == "object"):
+				game_state.current_slot_index = 1
+			elif(data.type == "enemy"):
+				game_state.current_slot_index = 2
+			game_state.registers[game_state.current_slot_index] = data
+			game_state.clipboard = data
 			print("Copied:", target.name)
 			copy_successful.emit(data)
 

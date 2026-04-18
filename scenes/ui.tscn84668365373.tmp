@@ -93,19 +93,7 @@ layout_mode = 0
 offset_left = 25.0
 offset_top = 66.0
 offset_right = 172.0
-offset_bottom = 171.0
-theme_override_fonts/normal_font = ExtResource("4_wm3ai")
-theme_override_font_sizes/normal_font_size = 40
-bbcode_enabled = true
-text = "[center]Empty[/center]"
-scroll_active = false
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="CombatFrame" unique_id=1626968890]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 178.0
-offset_right = 172.0
-offset_bottom = 283.0
+offset_bottom = 119.0
 theme_override_fonts/normal_font = ExtResource("4_wm3ai")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
@@ -135,19 +123,7 @@ layout_mode = 0
 offset_left = 25.0
 offset_top = 66.0
 offset_right = 172.0
-offset_bottom = 161.0
-theme_override_fonts/normal_font = ExtResource("4_wm3ai")
-theme_override_font_sizes/normal_font_size = 40
-bbcode_enabled = true
-text = "[center]Empty[/center]"
-scroll_active = false
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="ObjectFrame" unique_id=1979978595]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 178.0
-offset_right = 172.0
-offset_bottom = 273.0
+offset_bottom = 119.0
 theme_override_fonts/normal_font = ExtResource("4_wm3ai")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
@@ -176,19 +152,7 @@ layout_mode = 0
 offset_left = 25.0
 offset_top = 66.0
 offset_right = 172.0
-offset_bottom = 161.0
-theme_override_fonts/normal_font = ExtResource("4_wm3ai")
-theme_override_font_sizes/normal_font_size = 40
-bbcode_enabled = true
-text = "[center]Empty[/center]"
-scroll_active = false
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="EntityFrame" unique_id=423989593]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 178.0
-offset_right = 172.0
-offset_bottom = 273.0
+offset_bottom = 119.0
 theme_override_fonts/normal_font = ExtResource("4_wm3ai")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true

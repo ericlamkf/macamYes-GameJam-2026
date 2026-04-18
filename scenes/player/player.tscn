@@ -78,10 +78,6 @@ size = Vector2(18, 19)
 collision_mask = 54
 collision_priority = 0.1
 script = ExtResource("1_v6fml")
-speed = null
-jump_force = null
-max_range = null
-health = null
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2014346780]
 position = Vector2(0, -24)
