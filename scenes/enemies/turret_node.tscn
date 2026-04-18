@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c1uvy3k7kcvxp" path="res://scenes/enemies/turret_node.gd" id="2_25ock"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_25ock"]
 [ext_resource type="Texture2D" uid="uid://cs1yo6hbymee2" path="res://assets/sprites/enemies/m2rksman.png" id="4_mopol"]
-[ext_resource type="AudioStream" uid="uid://dit0mvmhauv5i" path="res://assets/audio/sfx/enemies/boom.wav" id="5_xdp2a"]
+[ext_resource type="AudioStream" uid="uid://etq10tvy5uum" path="res://assets/audio/music/biubiubiu.mp3" id="5_8rjoj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mopol"]
 atlas = ExtResource("4_mopol")
@@ -206,8 +206,9 @@ autostart = true
 position = Vector2(16, -6)
 
 [node name="BoomSound" type="AudioStreamPlayer2D" parent="." index="6" unique_id=1290345269]
-stream = ExtResource("5_xdp2a")
+stream = ExtResource("5_8rjoj")
 volume_db = -11.375
+autoplay = true
 max_distance = 446.0
 attenuation = 7.9999866
 

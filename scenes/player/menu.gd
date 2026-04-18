@@ -1,17 +1,20 @@
 extends Control
 
 @onready var buttons = [$PanelContainer/VBoxContainer/Resume, $PanelContainer/VBoxContainer/Restart, $PanelContainer/VBoxContainer/Quit]
+@onready var pause_sound: AudioStreamPlayer = $PauseSound
+
 var selected_index := 0
 
 func _ready() -> void:
 	visible = false
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_set_process_mode_recursive(self, Node.PROCESS_MODE_ALWAYS)
+	pause_sound.stream = load("res://assets/audio/music/block.mp3")
 	$PanelContainer/VBoxContainer/Resume.pressed.connect(_on_resume)
 	$PanelContainer/VBoxContainer/Restart.pressed.connect(_on_restart)
 	$PanelContainer/VBoxContainer/Quit.pressed.connect(_on_quit)
 	_highlight(selected_index)
-
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		if visible:
@@ -25,21 +28,26 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_S:
+		if event.keycode == KEY_S or event.keycode == KEY_DOWN:
 			selected_index = (selected_index + 1) % buttons.size()
 			_highlight(selected_index)
+			pause_sound.play(0.86)
 			accept_event()
-		elif event.keycode == KEY_W:
+		elif event.keycode == KEY_W or event.keycode == KEY_UP:
 			selected_index = (selected_index - 1 + buttons.size()) % buttons.size()
 			_highlight(selected_index)
+			pause_sound.play(0.86)
 			accept_event()
 		elif event.keycode == KEY_SPACE or event.keycode == KEY_ENTER:
+			pause_sound.play(0.86)
 			buttons[selected_index].pressed.emit()
 			accept_event()
 		elif event.keycode == KEY_C:
+			pause_sound.play(0.86)
 			_on_resume()
 			accept_event()
 		elif event.keycode == KEY_R:
+			pause_sound.play(0.86)
 			_on_restart()
 			accept_event()
 

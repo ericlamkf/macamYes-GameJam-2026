@@ -259,6 +259,14 @@ func apply_damage(damage:int):
 		is_dead = true
 		sprite.play("death")
 
+		# --- DEATH SOUND ---
+		var dead_sounds = ["res://assets/audio/music/dead.mp3", "res://assets/audio/music/dead_2.mp3"]
+		var sfx = AudioStreamPlayer.new()
+		sfx.stream = load(dead_sounds[randi() % dead_sounds.size()])
+		sfx.process_mode = Node.PROCESS_MODE_ALWAYS
+		add_child(sfx)
+		sfx.play()
+
 		# --- GHOST MODE ---
 		set_collision_layer_value(1, false)
 		$Hurtbox.set_deferred("monitorable", false)

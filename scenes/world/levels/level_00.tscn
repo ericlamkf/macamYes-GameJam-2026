@@ -738,7 +738,7 @@ offset = Vector2(0, -48)
 zoom = Vector2(5, 5)
 process_callback = 0
 
-[node name="UI" parent="Player/CameraD" unique_id=369703887 instance=ExtResource("17_5rt1s")]
+[node name="Player_CameraD#UI" parent="." unique_id=369703887 instance=ExtResource("17_5rt1s")]
 
 [node name="CtrlEntity2" parent="." unique_id=2053566812 instance=ExtResource("11_1p1bg")]
 position = Vector2(-6, 94)
@@ -746,5 +746,4 @@ position = Vector2(-6, 94)
 [node name="GravityInverter" parent="." unique_id=440597128 instance=ExtResource("16_5rt1s")]
 position = Vector2(-132, 160)
 
-[connection signal="copy_successful" from="Player" to="Player/CameraD/UI" method="_on_player_copy_successful"]
-[connection signal="take_damage" from="Player" to="Player/CameraD/UI" method="_on_player_take_damage"]
+[connection signal="take_damage" from="Player" to="Player_CameraD#UI" method="_on_player_take_damage"]
