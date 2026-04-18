@@ -729,16 +729,16 @@ position = Vector2(-94, 158)
 [node name="SyntaxCrawler" parent="." unique_id=1804172064 instance=ExtResource("8_gny22")]
 position = Vector2(268, 154)
 
-[node name="Player2" parent="." unique_id=1421281123 instance=ExtResource("5_54gas")]
+[node name="Player" parent="." unique_id=1421281123 instance=ExtResource("5_54gas")]
 position = Vector2(-28, 121)
 speed = 125
 
-[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1823578748]
+[node name="CameraD" type="Camera2D" parent="Player" unique_id=1823578748]
 offset = Vector2(0, -48)
 zoom = Vector2(5, 5)
 process_callback = 0
 
-[node name="UI" parent="Player2/Camera2D" unique_id=369703887 instance=ExtResource("17_5rt1s")]
+[node name="UI" parent="Player/CameraD" unique_id=369703887 instance=ExtResource("17_5rt1s")]
 
 [node name="CtrlEntity2" parent="." unique_id=2053566812 instance=ExtResource("11_1p1bg")]
 position = Vector2(-6, 94)
@@ -746,5 +746,5 @@ position = Vector2(-6, 94)
 [node name="GravityInverter" parent="." unique_id=440597128 instance=ExtResource("16_5rt1s")]
 position = Vector2(-132, 160)
 
-[connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]
-[connection signal="take_damage" from="Player2" to="Player2/Camera2D/UI" method="_on_player_take_damage"]
+[connection signal="copy_successful" from="Player" to="Player/CameraD/UI" method="_on_player_copy_successful"]
+[connection signal="take_damage" from="Player" to="Player/CameraD/UI" method="_on_player_take_damage"]

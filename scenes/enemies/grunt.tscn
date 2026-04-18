@@ -226,7 +226,7 @@ shape = SubResource("CircleShape2D_t8odd")
 [node name="Marker2D" type="Marker2D" parent="." index="7" unique_id=2030095144]
 position = Vector2(16, -7)
 
-[node name="BoomSound" type="AudioStreamPlayer" parent="." index="8" unique_id=39088935]
+[node name="BoomSound" type="AudioStreamPlayer2D" parent="." index="8" unique_id=1351771833]
 stream = ExtResource("5_wci2o")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]

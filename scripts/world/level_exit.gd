@@ -10,4 +10,5 @@ func _on_body_entered(body: Node) -> void:
 		GameState.spawn_position = Vector2.ZERO
 		GameState.ctrl_position = Vector2.ZERO
 		GameState.ctrl_position_locked = true
+		GameState.player_health = 100
 		get_tree().change_scene_to_file(next_level_path)

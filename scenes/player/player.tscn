@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfa3djatwcghi" path="res://scenes/player/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://dw4jrp6kllxd5" path="res://assets/sprites/player/player_sheet.png" id="2_g2els"]
+[ext_resource type="PackedScene" path="res://scenes/dead_scene.tscn" id="2_lvxji"]
 [ext_resource type="Script" uid="uid://csccty0vs1n4n" path="res://scenes/shared/hurtbox.gd" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bruh7"]
@@ -401,6 +402,7 @@ size = Vector2(32, 24)
 collision_mask = 54
 collision_priority = 0.1
 script = ExtResource("1_v6fml")
+death_screen_scene = ExtResource("2_lvxji")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2014346780]
 position = Vector2(0, -24)

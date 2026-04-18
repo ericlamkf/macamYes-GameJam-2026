@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://6ko0ng811g8d"]
 
 [ext_resource type="Script" uid="uid://bxi338iiob86x" path="res://scripts/world/kill_zone.gd" id="1_63kc2"]
+[ext_resource type="PackedScene" uid="uid://ds1q3aut24wv2" path="res://scenes/player/dead_scene.tscn" id="2_nbur4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nbur4"]
 
 [node name="KillLine" type="Area2D" unique_id=2101105798]
 script = ExtResource("1_63kc2")
+death_screen_scene = ExtResource("2_nbur4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151777199]
 shape = SubResource("WorldBoundaryShape2D_nbur4")

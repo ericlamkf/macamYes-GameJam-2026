@@ -205,8 +205,11 @@ autostart = true
 [node name="Muzzle" type="Marker2D" parent="." index="5" unique_id=31044615]
 position = Vector2(16, -6)
 
-[node name="BoomSound" type="AudioStreamPlayer" parent="." index="6" unique_id=670256284]
+[node name="BoomSound" type="AudioStreamPlayer2D" parent="." index="6" unique_id=1290345269]
 stream = ExtResource("5_xdp2a")
+volume_db = -11.375
+max_distance = 446.0
+attenuation = 7.9999866
 
 [connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_range = 80
 @export var health: int = 100
+@export var death_screen_scene: PackedScene
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
@@ -33,6 +34,7 @@ func _ready() -> void:
 	collected_keys = GameState.collected_keys.duplicate()
 	if GameState.spawn_position != Vector2.ZERO:
 		global_position = GameState.spawn_position
+	health = GameState.player_health
 
 func collect_key(key: String) -> void:
 	if key not in collected_keys:
@@ -206,6 +208,7 @@ func _input(event):
 
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		GameState.reset_clipboard()
+		GameState.player_health = 100
 		get_tree().reload_current_scene()
 
 	# Q to move Left, E to move Right (Inventory Slots)
@@ -255,12 +258,18 @@ func apply_damage(damage:int):
 	if(health <= 0):
 		is_dead = true
 		sprite.play("death")
-		print("YOU DIED")
-		
+
 		# --- GHOST MODE ---
-		set_collision_layer_value(1, false) 
+		set_collision_layer_value(1, false)
 		$Hurtbox.set_deferred("monitorable", false)
 		$Hurtbox.set_deferred("monitoring", false)
+
+		# --- DEATH SCREEN ---
+		get_tree().paused = true
+		var scene = death_screen_scene if death_screen_scene else load("res://scenes/player/dead_scene.tscn")
+		if scene:
+			var death_ui = scene.instantiate()
+			get_tree().current_scene.add_child(death_ui)
 
 func _on_sprite_2d_animation_finished() -> void:
 	# Unlock copy/shoot

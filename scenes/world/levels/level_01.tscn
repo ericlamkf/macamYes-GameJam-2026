@@ -767,16 +767,10 @@ position = Vector2(678, -209)
 [node name="Grunt3" parent="." unique_id=1911220196 instance=ExtResource("17_8j2nj")]
 position = Vector2(813, -209)
 
-[node name="Grunt4" parent="." unique_id=1126071336 instance=ExtResource("17_8j2nj")]
-position = Vector2(878, -209)
-
 [node name="Grunt2" parent="." unique_id=738765514 instance=ExtResource("17_8j2nj")]
 position = Vector2(321, -289)
 
 [node name="GravityInverter" parent="." unique_id=440597128 instance=ExtResource("17_oy7ii")]
 position = Vector2(54, 0)
-
-[node name="Grunt3" parent="." unique_id=1612060223 instance=ExtResource("17_8j2nj")]
-position = Vector2(814, -210)
 
 [connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]
