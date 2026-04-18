@@ -2,7 +2,12 @@ extends Node
 
 const DEFAULT_ITEM_SCENE = "res://scenes/objects/gravity_inverter.tscn"
 
-var clipboard = null
+var slot_order = ["COMBAT", "OBJECT", "ENTITY"]
+var current_slot_index = 0
+
+var registers = [null, null, null]
+var clipboard:ClipboardData = registers[current_slot_index]
+
 var ctrl_attached = true
 var offhand_mode = "C"  # or "V"
 var spawn_position: Vector2 = Vector2.ZERO
@@ -31,4 +36,6 @@ func _build_default_clipboard() -> void:
 	if sprite2d and sprite2d.sprite_frames:
 		data.sprite_frames = sprite2d.sprite_frames.duplicate(true)
 	clipboard = data
+	registers[1] = clipboard
+	current_slot_index = 1
 	cap.free()

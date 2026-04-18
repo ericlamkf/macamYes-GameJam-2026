@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
+@export var health: int = 100
 
 var gravity_field_count: int = 0
 var base_gravity: int = 900
@@ -14,12 +15,15 @@ var base_gravity: int = 900
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
+var game_state: GameState
 
 signal copy_successful(data: ClipboardData)
+signal take_damage(health: int)
 
 var collected_keys: Array[String] = []
 
 func _ready() -> void:
+	game_state = GameState
 	collected_keys = GameState.collected_keys.duplicate()
 	if GameState.spawn_position != Vector2.ZERO:
 		global_position = GameState.spawn_position
@@ -28,8 +32,6 @@ func collect_key(key: String) -> void:
 	if key not in collected_keys:
 		collected_keys.append(key)
 		GameState.collected_keys = collected_keys
-
-@export var health: int = 4
 
 func _physics_process(delta):
 	# 1. Handle Gravity
@@ -107,12 +109,31 @@ func paste_object(clipboard: ClipboardData):
 	if type == "projectile":
 		instance.shoot(self, view_direction)
 	elif type == "enemy":
-		if view_direction.x > 0 and instance.has_method("set_facing_direction"):
+		# 1. Handle Facing Direction (Checks both left and right)
+		if view_direction.x < 0 and instance.has_method("set_facing_direction"):
+			instance.set_facing_direction(-1) # Note: check if your enemy script expects -1 or "left"
+		elif view_direction.x > 0 and instance.has_method("set_facing_direction"):
 			instance.set_facing_direction("right")
 		
-		instance.spawn_ally(clipboard.data["number_of_clone"] + 1)
+		# 2. Ally Logic
+		if instance.has_method("spawn_ally"):
+			# If the main branch's new spawn_ally function exists, use it safely
+			var clones = 0
+			if clipboard.data.has("number_of_clone"):
+				clones = clipboard.data["number_of_clone"]
+			instance.spawn_ally(clones + 1)
+		else:
+			# Otherwise, use your manual 15-second self-destruct logic
+			instance.is_ally = true
+			instance.max_health = int(instance.max_health * 0.5)
+			instance.current_health = instance.max_health
+			get_tree().create_timer(15.0).timeout.connect(instance.queue_free)
+
 	elif type == "object":
-		instance.on_pasted(true)
+
+		# Retained from main branch so object pasting doesn't break
+		if instance.has_method("on_pasted"):
+			instance.on_pasted(true)
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
@@ -131,9 +152,22 @@ func update_aim_line():
 func _input(event):
 	if "c" in collected_keys and event.is_action_released("copy"):
 		try_copy()
+
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
 		GameState.reset_clipboard()
 		get_tree().reload_current_scene()
+
+# Q to move Left, E to move Right
+	if event.is_action_pressed("prev_slot"): # Map 'Q'
+		cycle_slots(-1)
+	elif event.is_action_pressed("next_slot"): # Map 'E'
+		cycle_slots(1)
+
+func cycle_slots(direction: int):
+	# Using the 'wrap' function is the cleanest way to do this in Godot
+	game_state.current_slot_index = posmod(game_state.current_slot_index + direction, game_state.slot_order.size())
+	game_state.clipboard = game_state.registers[game_state.current_slot_index]
+
 
 func try_copy():
 	if copy_ray.is_colliding():
@@ -144,11 +178,19 @@ func try_copy():
 			target = target.get_parent()
 		if target and target.has_method("get_clipboard_data"):
 			var data = target.get_clipboard_data()
-			GameState.clipboard = data
+			if(data.type == "projectile"):
+				game_state.current_slot_index = 0
+			elif(data.type == "object"):
+				game_state.current_slot_index = 1
+			elif(data.type == "enemy"):
+				game_state.current_slot_index = 2
+			game_state.registers[game_state.current_slot_index] = data
+			game_state.clipboard = data
 			print("Copied:", target.name)
 			copy_successful.emit(data)
 
 func apply_damage(damage:int):
-	health -= 1
-	if(health == 0):
+	health -= damage
+	take_damage.emit(health)
+	if(health <= 0):
 		print("YOU DIED")
