@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bh1nk2xun13s5"]
 
-[ext_resource type="Script" path="res://scripts/ctrl_entity.gd" id="1_jsegu"]
+[ext_resource type="Script" uid="uid://b5ft163ay3k7" path="res://scenes/ctrl_entity.gd" id="1_v5b6j"]
 [ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="2_v5b6j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvb05"]
@@ -22,8 +22,7 @@ animations = [{
 size = Vector2(24, 12)
 
 [node name="CtrlEntity" type="Node2D" unique_id=1472873674]
-script = ExtResource("1_jsegu")
-max_distance = 300
+script = ExtResource("1_v5b6j")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=208465631]
 position = Vector2(9.536743e-07, -1.9073486e-06)

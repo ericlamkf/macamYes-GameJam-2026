@@ -2,25 +2,32 @@ extends CharacterBody2D
 
 @export var speed = 150
 @export var jump_force = -300
-@export var gravity = 900
+@export var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_range = 80
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
 
+var gravity_field_count: int = 0
+var base_gravity: int = 900
+
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
 
+signal copy_successful(data: ClipboardData)
+
+@export var health: int = 4
+
 func _physics_process(delta):
 	# 1. Handle Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
+	velocity.y += gravity * delta
+	velocity.y = clamp(velocity.y, -900, 900)
+			
 	# 3. Get horizontal input direction
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	# 4. "Regain" logic: Stop inversion only when the player stops moving
+	# 4. "Regain" logic: Stop inversion only when the plaayer stops moving
 	if direction == 0:
 		if controls_inverted_signal:
 			controls_inverted = true
@@ -61,14 +68,19 @@ func paste_object(clipboard: ClipboardData):
 	# 1. SET POSITION FIRST (Before add_child)
 	# This prevents the "flash" from (0,0) to the target
 	if type == "projectile":
+		instance.corrupted = data["corrupted"]
 		target_pos = $Marker2D.global_position
 	elif type == "enemy":
 		if copy_ray.is_colliding():
 			target_pos = copy_ray.get_collision_point()
 		else:
 			return
-			#target_pos = copy_ray.to_global(copy_ray.target_position)
-
+	elif type == "object":
+		if copy_ray.is_colliding():
+			target_pos = copy_ray.get_collision_point()
+		else:
+			target_pos = copy_ray.to_global(copy_ray.target_position)
+	
 	instance.position = target_pos
 
 	# 2. ADD TO TREE
@@ -83,8 +95,12 @@ func paste_object(clipboard: ClipboardData):
 	if type == "projectile":
 		instance.shoot(self, view_direction)
 	elif type == "enemy":
-		if view_direction.x < 0 and instance.has_method("set_facing_direction"):
-			instance.set_facing_direction(-1)
+		if view_direction.x > 0 and instance.has_method("set_facing_direction"):
+			instance.set_facing_direction("right")
+		
+		instance.spawn_ally(clipboard.data["number_of_clone"] + 1)
+	elif type == "object":
+		instance.on_pasted(true)
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
@@ -107,8 +123,17 @@ func _input(event):
 func try_copy():
 	if copy_ray.is_colliding():
 		var target = copy_ray.get_collider()
+		if(target == null):
+			return
 		if not target.has_method("get_clipboard_data"):
 			target = target.get_parent()
 		if target and target.has_method("get_clipboard_data"):
-			GameState.clipboard = target.get_clipboard_data()
+			var data = target.get_clipboard_data()
+			GameState.clipboard = data
 			print("Copied:", target.name)
+			copy_successful.emit(data)
+
+func apply_damage(damage:int):
+	health -= 1
+	if(health == 0):
+		print("YOU DIED")

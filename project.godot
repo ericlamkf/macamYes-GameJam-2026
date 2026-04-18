@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="LosingControl"
-run/main_scene="uid://qn3n58pigbao"
+
+run/main_scene="uid://dy2jom3vb7waa"
+
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -58,10 +60,14 @@ paste={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="World"
 2d_physics/layer_4="Projectile"
+2d_physics/layer_5="Copyable Object"
+2d_physics/layer_6="Ally"
+2d_physics/layer_7="Pickup"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+2d/default_gravity=900.0
 common/physics_interpolation=true
 
 [rendering]
