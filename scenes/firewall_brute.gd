@@ -6,7 +6,6 @@ extends EnemyBase
 
 var direction: int = -1
 var current_speed: float = patrol_speed
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # The Sensors
 @onready var wall_check = $WallCheck
@@ -19,6 +18,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	super._ready()
+	
+	# Re-assign the inherited variable without 'var'
+	gravity = 1500
 	
 	if is_ally:
 		# 1. Tint him green so the player knows he's friendly!
