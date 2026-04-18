@@ -90,6 +90,22 @@ func _on_fatal_hitbox_body_entered(body: Node2D) -> void:
 		# 1. Force the player to die instantly by dealing massive damage
 		if body.has_method("apply_damage"):
 			body.apply_damage(9999)
+		
+		# --- NEW: THE CINEMATIC ZOOM ---
+		# Grab whatever camera is currently active in the game
+		var cam = get_viewport().get_camera_2d()
+		if cam:
+			var tween = get_tree().create_tween()
+			
+			# Tell the tween to run all animations at the exact same time
+			tween.set_parallel(true)
+			
+			# 1. Zoom in 2.5x over 2 seconds
+			tween.tween_property(cam, "zoom", cam.zoom * 2.5, 2.0).set_trans(Tween.TRANS_SINE)
+			
+			# 2. Pan the camera's center directly onto the player's body
+			# (Since 'body' is the player that just entered the hitbox)
+			tween.tween_property(cam, "global_position", body.global_position, 2.0).set_trans(Tween.TRANS_SINE)
 			
 		# Optional: Stop the boss hand from doing any other animations so it poses over the body
 		is_attacking = true 
