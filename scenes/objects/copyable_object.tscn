@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cbls470jpu0wg"]
 
-[ext_resource type="Script" uid="uid://bk84fxtmnkhcm" path="res://scenes/copyable_object.gd" id="1_lyord"]
+[ext_resource type="Script" uid="uid://bk84fxtmnkhcm" path="res://scenes/objects/copyable_object.gd" id="1_j2rb6"]
 
 [node name="CopyableObject" type="CharacterBody2D" unique_id=440597128]
 collision_layer = 16
 collision_mask = 63
-script = ExtResource("1_lyord")
+script = ExtResource("1_j2rb6")
 
 [node name="Timer" type="Timer" parent="." unique_id=108671608]
 wait_time = 5.0

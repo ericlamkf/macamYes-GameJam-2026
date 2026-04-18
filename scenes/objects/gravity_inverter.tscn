@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dbrwmmdtxyth3"]
 
-[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/copyable_object.tscn" id="1_fujf6"]
+[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/objects/copyable_object.tscn" id="1_fujf6"]
 [ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="2_j5n7s"]
-[ext_resource type="Script" uid="uid://cb4pxn0mhcieq" path="res://scenes/gravity_inverter.gd" id="2_xd28b"]
+[ext_resource type="Script" uid="uid://cb4pxn0mhcieq" path="res://scenes/objects/gravity_inverter.gd" id="2_xd28b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xd28b"]
 atlas = ExtResource("2_j5n7s")
@@ -27,7 +27,7 @@ size = Vector2(21, 21)
 
 [node name="GravityInverter" unique_id=440597128 instance=ExtResource("1_fujf6")]
 script = ExtResource("2_xd28b")
-gravity_multiplier = -1.0
+active = true
 object_id = "gravity_inverter"
 timeout = 8
 
