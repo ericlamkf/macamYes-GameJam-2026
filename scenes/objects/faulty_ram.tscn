@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://djn50hyqebhvt"]
+
+[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/objects/copyable_object.tscn" id="1_db1fe"]
+[ext_resource type="Script" uid="uid://bf0d4wtt5d7t" path="res://scenes/objects/faulty_ram.gd" id="2_7a8e8"]
+[ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="2_r74uc"]
+[ext_resource type="FontFile" uid="uid://c8trj0aomcxtm" path="res://assets/fonts/glyphmesss.ttf" id="4_wqbtk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqbtk"]
+atlas = ExtResource("2_r74uc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5x41p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqbtk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x41p"]
+size = Vector2(21, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqbtk"]
+radius = 90.04999
+
+[node name="FaultyRam" unique_id=440597128 instance=ExtResource("1_db1fe")]
+script = ExtResource("2_7a8e8")
+overload_limit = 100.0
+explosion_damage = 50
+explosion_radius = 150.0
+object_id = "faulty_ram"
+timeout = 10
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=849470058]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_5x41p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=1006816737]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("RectangleShape2D_5x41p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="3" unique_id=1841031672]
+offset_left = -30.0
+offset_top = -34.0
+offset_right = 30.0
+offset_bottom = -19.0
+theme_override_fonts/normal_font = ExtResource("4_wqbtk")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "MEM_STABLE"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExplosionArea" type="Area2D" parent="." index="4" unique_id=1418200603]
+collision_layer = 0
+collision_mask = 59
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExplosionArea" index="0" unique_id=468034767]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_wqbtk")

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://7go2v2ji5nnv"]
+
+[ext_resource type="Script" uid="uid://qa1fno8sbeel" path="res://scenes/pickups/d_entity.gd" id="1_pbcs0"]
+[ext_resource type="Texture2D" uid="uid://bb7tcoclmkwsy" path="res://assets/sprites/entities/Keyboard Letters and Symbols.png" id="2_a845f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsegu"]
+size = Vector2(40, 29)
+
+[node name="DEntity" type="Node2D" unique_id=1472873674]
+script = ExtResource("1_pbcs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=554272119]
+texture_filter = 1
+position = Vector2(1.0000038, 2.0000114)
+scale = Vector2(2.8539958, 2.2449048)
+texture = ExtResource("2_a845f")
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=206881073]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1246463704]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_jsegu")

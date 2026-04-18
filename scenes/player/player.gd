@@ -2,25 +2,44 @@ extends CharacterBody2D
 
 @export var speed = 150
 @export var jump_force = -300
-@export var gravity = 900
+@export var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_range = 80
 
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
 
+var gravity_field_count: int = 0
+var base_gravity: int = 900
+
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
 
+signal copy_successful(data: ClipboardData)
+
+var collected_keys: Array[String] = []
+
+func _ready() -> void:
+	collected_keys = GameState.collected_keys.duplicate()
+	if GameState.spawn_position != Vector2.ZERO:
+		global_position = GameState.spawn_position
+
+func collect_key(key: String) -> void:
+	if key not in collected_keys:
+		collected_keys.append(key)
+		GameState.collected_keys = collected_keys
+
+@export var health: int = 4
+
 func _physics_process(delta):
 	# 1. Handle Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
+	velocity.y += gravity * delta
+	velocity.y = clamp(velocity.y, -900, 900)
+			
 	# 3. Get horizontal input direction
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	# 4. "Regain" logic: Stop inversion only when the player stops moving
+	# 4. "Regain" logic: Stop inversion only when the plaayer stops moving
 	if direction == 0:
 		if controls_inverted_signal:
 			controls_inverted = true
@@ -41,12 +60,12 @@ func _physics_process(delta):
 
 func _process(delta):
 	update_copy_ray()
-	if(Input.is_action_pressed("copy")):
+	if "c" in collected_keys and Input.is_action_pressed("copy"):
 		update_aim_line()
 	else:
 		aim_line.points = []
-		
-	if(Input.is_action_just_pressed("paste")):
+
+	if "v" in collected_keys and Input.is_action_just_pressed("paste"):
 		paste_object(GameState.clipboard)
 
 func paste_object(clipboard: ClipboardData):
@@ -61,14 +80,19 @@ func paste_object(clipboard: ClipboardData):
 	# 1. SET POSITION FIRST (Before add_child)
 	# This prevents the "flash" from (0,0) to the target
 	if type == "projectile":
+		instance.corrupted = data["corrupted"]
 		target_pos = $Marker2D.global_position
 	elif type == "enemy":
 		if copy_ray.is_colliding():
 			target_pos = copy_ray.get_collision_point()
 		else:
 			return
-			#target_pos = copy_ray.to_global(copy_ray.target_position)
-
+	elif type == "object":
+		if copy_ray.is_colliding():
+			target_pos = copy_ray.get_collision_point()
+		else:
+			target_pos = copy_ray.to_global(copy_ray.target_position)
+	
 	instance.position = target_pos
 
 	# 2. ADD TO TREE
@@ -83,19 +107,30 @@ func paste_object(clipboard: ClipboardData):
 	if type == "projectile":
 		instance.shoot(self, view_direction)
 	elif type == "enemy":
+		# 1. Handle Facing Direction (Checks both left and right)
 		if view_direction.x < 0 and instance.has_method("set_facing_direction"):
-			instance.set_facing_direction(-1)
+			instance.set_facing_direction(-1) # Note: check if your enemy script expects -1 or "left"
+		elif view_direction.x > 0 and instance.has_method("set_facing_direction"):
+			instance.set_facing_direction("right")
 		
-		# Ally logic
-		# 1. Make them a traitor to their own kind
-		instance.is_ally = true
-		
-		# 2. Cut health by 50% (using int() so we don't get decimals)
-		instance.max_health = int(instance.max_health * 0.5)
-		instance.current_health = instance.max_health
-		
-		# 3. The 15-Second Self-Destruct (Godot 4 one-liner!)
-		get_tree().create_timer(15.0).timeout.connect(instance.queue_free)
+		# 2. Ally Logic
+		if instance.has_method("spawn_ally"):
+			# If the main branch's new spawn_ally function exists, use it safely
+			var clones = 0
+			if clipboard.data.has("number_of_clone"):
+				clones = clipboard.data["number_of_clone"]
+			instance.spawn_ally(clones + 1)
+		else:
+			# Otherwise, use your manual 15-second self-destruct logic
+			instance.is_ally = true
+			instance.max_health = int(instance.max_health * 0.5)
+			instance.current_health = instance.max_health
+			get_tree().create_timer(15.0).timeout.connect(instance.queue_free)
+
+	elif type == "object":
+		# Retained from main branch so object pasting doesn't break
+		if instance.has_method("on_pasted"):
+			instance.on_pasted(true)
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
@@ -112,14 +147,26 @@ func update_aim_line():
 	aim_line.points = [start, end]
 
 func _input(event):
-	if event.is_action_released("copy"):
+	if "c" in collected_keys and event.is_action_released("copy"):
 		try_copy()
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		GameState.reset_clipboard()
+		get_tree().reload_current_scene()
 
 func try_copy():
 	if copy_ray.is_colliding():
 		var target = copy_ray.get_collider()
+		if(target == null):
+			return
 		if not target.has_method("get_clipboard_data"):
 			target = target.get_parent()
 		if target and target.has_method("get_clipboard_data"):
-			GameState.clipboard = target.get_clipboard_data()
+			var data = target.get_clipboard_data()
+			GameState.clipboard = data
 			print("Copied:", target.name)
+			copy_successful.emit(data)
+
+func apply_damage(damage:int):
+	health -= 1
+	if(health == 0):
+		print("YOU DIED")

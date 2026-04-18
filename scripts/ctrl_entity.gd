@@ -7,8 +7,19 @@ extends Node2D
 var player: CharacterBody2D
 var attached := true
 
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player") as CharacterBody2D
+	if GameState.ctrl_position != Vector2.ZERO:
+		global_position = GameState.ctrl_position
+	GameState.ctrl_position_locked = false
+
+func _exit_tree() -> void:
+	if not GameState.ctrl_position_locked:
+		GameState.ctrl_position = global_position
+
 func _process(delta):
 	if not player:
+		player = get_tree().get_first_node_in_group("player") as CharacterBody2D
 		return
 
 	check_detach()
