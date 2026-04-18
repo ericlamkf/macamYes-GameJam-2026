@@ -1,6 +1,6 @@
 extends EnemyBase
 
-@export var speed: float = 100.0
+@export var speed: float = 20.0
 @export var projectile_scene: PackedScene = preload("res://scenes/projectile.tscn")
 @export var shoot_cooldown: float = 0.5
 @export var aim_ready_time: float = 0.5

@@ -1,11 +1,15 @@
 extends CanvasLayer
 
+
+@onready var bar_sprite = $BarContainer/TextureRect
+@onready var container_width = $BarContainer.size.x
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$ClipboardFrame/AnimatedSprite2D.visible = false
 	$ClipboardFrame/RichTextLabel.visible = false
-
-
+	update_health_bar(100, 100)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var glyphs = "01ABCDE#!?@&$"
 var timer = 0.0
@@ -44,3 +48,15 @@ func _on_player_copy_successful(data):
 		# 2. Play the 'idle' or 'default' animation as a preview
 		$ClipboardFrame/AnimatedSprite2D.play("default") 
 		$ClipboardFrame/AnimatedSprite2D.visible = true
+
+func update_health_bar(current_health, max_health):
+	var health_ratio = float(current_health) / max_health
+	
+	# Calculate the target X position
+	# If health is 0, target_x is -container_width (hidden to the left)
+	# If health is 1.0, target_x is 0 (fully visible)
+	var target_x = (health_ratio - 1.0) * container_width
+	
+	# Use a Tween for a smooth sliding effect
+	var tween = create_tween()
+	tween.tween_property(bar_sprite, "position:x", target_x, 0.3).set_trans(Tween.TRANS_LINEAR)

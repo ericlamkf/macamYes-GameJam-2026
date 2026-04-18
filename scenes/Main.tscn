@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dy2jom3vb7waa"]
+[gd_scene format=3 uid="uid://bhe8dcq6pfh2p"]
 
 [ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scenes/main.gd" id="1_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="2_jkv2x"]
@@ -63,6 +63,7 @@ safe_margin = 0.1
 position = Vector2(-662, 31)
 collision_mask = 23
 safe_margin = 0.1
+speed = 20.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1043492172]
 collision_layer = 4

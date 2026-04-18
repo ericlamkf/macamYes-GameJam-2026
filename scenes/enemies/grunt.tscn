@@ -55,7 +55,7 @@ radius = 180.04443
 
 [node name="Grunt" unique_id=717656759 instance=ExtResource("1_usvl4")]
 script = ExtResource("2_6upo6")
-speed = 100.0
+speed = 30.0
 projectile_scene = ExtResource("3_t8odd")
 shoot_cooldown = 0.5
 aim_ready_time = 0.5

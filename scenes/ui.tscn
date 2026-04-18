@@ -1,14 +1,10 @@
 [gd_scene format=3 uid="uid://14gfhr8pc58t"]
 
 [ext_resource type="Script" uid="uid://c2thwtk4edlb0" path="res://scenes/ui.gd" id="1_gdt2y"]
-[ext_resource type="Texture2D" uid="uid://cam8jd888aex" path="res://assets/sprites/ui/helth bar.png" id="2_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://dujpurx6ga0fo" path="res://assets/sprites/ui/block_placeholder.png" id="3_8dubc"]
 [ext_resource type="Texture2D" uid="uid://bksgst5258s55" path="res://assets/sprites/ui/progress.png" id="4_p7vwb"]
 [ext_resource type="FontFile" uid="uid://c8trj0aomcxtm" path="res://assets/fonts/glyphmesss.ttf" id="4_wm3ai"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjd11"]
-atlas = ExtResource("2_wm3ai")
-region = Rect2(2, 4, 30, 28)
+[ext_resource type="Texture2D" uid="uid://n6e6fvviwo87" path="res://assets/sprites/ui/healthbar.png" id="5_wm3ai"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmy6f"]
 atlas = ExtResource("3_8dubc")
@@ -58,15 +54,21 @@ region = Rect2(0, 0, 32, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3p2gp"]
 atlas = ExtResource("4_p7vwb")
-region = Rect2(33, 1, 30, 6)
+region = Rect2(32, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3ai"]
+atlas = ExtResource("5_wm3ai")
+region = Rect2(1, 10, 62, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dubc"]
+region = Rect2(1, 10, 62, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7vwb"]
+atlas = ExtResource("5_wm3ai")
+region = Rect2(11, 46, 52, 6)
 
 [node name="UI" type="CanvasLayer" unique_id=369703887]
 script = ExtResource("1_gdt2y")
-
-[node name="HealthBar" type="TextureRect" parent="." unique_id=1889892737]
-offset_right = 300.0
-offset_bottom = 320.0
-texture = SubResource("AtlasTexture_bjd11")
 
 [node name="ClipboardFrame" type="TextureRect" parent="." unique_id=458945473]
 anchors_preset = 1
@@ -111,3 +113,25 @@ nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_mwfav")
 texture_progress = SubResource("AtlasTexture_3p2gp")
 texture_progress_offset = Vector2(1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=757156441]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 352.0
+offset_bottom = 119.0
+texture = SubResource("AtlasTexture_wm3ai")
+stretch_mode = 4
+
+[node name="BarContainer" type="TextureRect" parent="." unique_id=6118174]
+clip_contents = true
+offset_left = 82.0
+offset_top = 84.0
+offset_right = 337.0
+offset_bottom = 114.0
+texture = SubResource("AtlasTexture_8dubc")
+
+[node name="TextureRect" type="TextureRect" parent="BarContainer" unique_id=1075758928]
+layout_mode = 0
+offset_right = 255.0
+offset_bottom = 30.0
+texture = SubResource("AtlasTexture_p7vwb")
