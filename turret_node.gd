@@ -48,3 +48,11 @@ func set_facing_direction(direction: String):
 		facing_direction = Vector2.LEFT
 		sprite.flip_h = true
 		sprite.move_local_x(9)
+
+func _physics_process(delta: float):
+	print(velocity.y)
+	velocity.y += gravity * delta
+	
+	velocity.y = clamp(velocity.y, -3000, 3000)
+	
+	move_and_slide()

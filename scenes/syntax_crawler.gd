@@ -3,8 +3,6 @@ extends EnemyBase
 @export var speed: float = 50.0
 var direction: int = 1
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 @onready var wall_check = $WallCheck
 @onready var ledge_check = $LedgeCheck
 @onready var sprite = $Sprite2D
@@ -16,9 +14,8 @@ func _ready():
 
 func _physics_process(delta):
 	# Apply Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
+	velocity.y += gravity * delta
+	velocity.y = clamp(velocity.y, -3000, 3000)
 	if is_freeze:
 		return
 

@@ -6,7 +6,8 @@ class_name EnemyBase
 @export var melee_damage: int = 1
 @export var attack_interval: float = 1.0 # Time between hits (in seconds)
 @export var is_ally: bool = false
-@export var ally_timeout = 15
+@export var ally_timeout: int = 15
+@export var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var number_of_clone = 0;
 var current_health: int
@@ -31,6 +32,7 @@ func apply_damage(amount: int):
 func die():
 	queue_free()
 	
+
 func get_clipboard_data() -> ClipboardData:
 	print(number_of_clone)
 	var data = ClipboardData.new()

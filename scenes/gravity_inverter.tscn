@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dbrwmmdtxyth3"]
+
+[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/copyable_object.tscn" id="1_fujf6"]
+[ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="2_j5n7s"]
+[ext_resource type="Script" uid="uid://cb4pxn0mhcieq" path="res://scenes/gravity_inverter.gd" id="2_xd28b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd28b"]
+atlas = ExtResource("2_j5n7s")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_su1kh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd28b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_viy2u"]
+radius = 76.02631
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8t3y"]
+size = Vector2(21, 21)
+
+[node name="GravityInverter" unique_id=440597128 instance=ExtResource("1_fujf6")]
+script = ExtResource("2_xd28b")
+gravity_multiplier = -1.0
+object_id = "gravity_inverter"
+timeout = 8
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=849470058]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_su1kh")
+
+[node name="Area2D" type="Area2D" parent="." index="2" unique_id=2078134518]
+collision_layer = 0
+collision_mask = 51
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=2087748536]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_viy2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=227792335]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("RectangleShape2D_j8t3y")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

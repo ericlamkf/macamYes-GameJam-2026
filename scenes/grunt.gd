@@ -32,8 +32,8 @@ func _ready():
 
 func _physics_process(delta):
 	# Apply Gravity
-	if not is_on_floor():
-		velocity.y += 900 * delta
+	velocity.y += gravity * delta
+	velocity.y = clamp(velocity.y, -3000, 3000)
 
 	if is_freeze:
 		return
@@ -47,7 +47,7 @@ func _physics_process(delta):
 		velocity.x = 0 # Explicitly stop horizontal movement
 		
 		# Update visuals
-		set_facing_direction(target.global_position.x - global_position.x)
+		set_facing_direction_int(target.global_position.x - global_position.x)
 		
 		target_location = Vector2(target.global_position.x, target.global_position.y - 8)
 		
@@ -116,7 +116,7 @@ func shoot(target_pos: Vector2):
 	await get_tree().create_timer(shoot_cooldown).timeout
 	can_shoot = true
 
-func set_facing_direction(direction: int):
+func set_facing_direction_int(direction: int):
 	if direction > 0:
 		# Flip the visual. If your sprite faces Left by default, 
 		# we flip scale.x to -1 to make it look Right.
@@ -129,7 +129,7 @@ func set_facing_direction(direction: int):
 # --- Patrol Logic ---
 func _on_patrol_timeout():
 	direction = [ -1.0, 1.0, 0.0 ].pick_random()
-	set_facing_direction(direction)
+	set_facing_direction_int(direction)
 	if not target and direction != 0:
 		ray_cast.target_position.x = abs(ray_cast.target_position.x) * direction
 	

@@ -20,7 +20,7 @@ func on_pasted(will_expired: bool):
 func get_clipboard_data() -> ClipboardData:
 	var data = ClipboardData.new()
 	data.type = "object"
-	data.sprite_frames = $Sprite2D.sprite_frames
+	data.sprite_frames = $AnimatedSprite2D.sprite_frames
 	data.data = {
 		
 	}

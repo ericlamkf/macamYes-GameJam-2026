@@ -4,15 +4,29 @@
 [ext_resource type="Script" uid="uid://c3mij6ec28ijq" path="res://scenes/capacitor.gd" id="2_jywr7"]
 [ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="3_jnthu"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnthu"]
+atlas = ExtResource("3_jnthu")
+region = Rect2(128, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0apr1"]
 atlas = ExtResource("3_jnthu")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ipytf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipytf"]
+atlas = ExtResource("3_jnthu")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3afi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jnthu")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0apr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipytf")
 }],
 "loop": true,
 "name": &"default",
@@ -26,10 +40,12 @@ size = Vector2(21, 21)
 script = ExtResource("2_jywr7")
 blast_radius = 130.0
 freeze_duration = 3.0
+object_id = "capacitor"
+timeout = 10
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." index="1" unique_id=39417250]
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=849470058]
 position = Vector2(0, -10)
-sprite_frames = SubResource("SpriteFrames_ipytf")
+sprite_frames = SubResource("SpriteFrames_v3afi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=774270928]
 position = Vector2(-0.5, -10.5)

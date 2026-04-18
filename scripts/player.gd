@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 150
 @export var jump_force = -300
-@export var gravity = 900
+@export var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_range = 80
 
 @onready var copy_ray = $RayCast2D
@@ -18,8 +18,8 @@ signal copy_successful(data: ClipboardData)
 
 func _physics_process(delta):
 	# 1. Handle Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	velocity.y += gravity * delta
+	velocity.y = clamp(velocity.y, -3000, 3000)
 
 	# 3. Get horizontal input direction
 	var direction = Input.get_axis("move_left", "move_right")
