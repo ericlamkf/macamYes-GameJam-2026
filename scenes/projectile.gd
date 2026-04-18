@@ -80,6 +80,10 @@ func _physics_process(delta):
 		
 
 func _on_area_entered(area: Area2D):
+	# FOOLPROOF FRIENDLY FIRE: If the owner of the hurtbox is the guy who fired it, ignore!
+	if area.owner == source:
+		return
+	
 	print(area)
 	# The 'area' is the Hurtbox of the enemy
 	if area.has_method("take_damage"):

@@ -85,6 +85,17 @@ func paste_object(clipboard: ClipboardData):
 	elif type == "enemy":
 		if view_direction.x < 0 and instance.has_method("set_facing_direction"):
 			instance.set_facing_direction(-1)
+		
+		# Ally logic
+		# 1. Make them a traitor to their own kind
+		instance.is_ally = true
+		
+		# 2. Cut health by 50% (using int() so we don't get decimals)
+		instance.max_health = int(instance.max_health * 0.5)
+		instance.current_health = instance.max_health
+		
+		# 3. The 15-Second Self-Destruct (Godot 4 one-liner!)
+		get_tree().create_timer(15.0).timeout.connect(instance.queue_free)
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
