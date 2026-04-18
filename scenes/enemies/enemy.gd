@@ -14,6 +14,9 @@ var current_health: int
 var is_freeze: bool = false
 var can_attack: bool = true # Track if the cooldown is ready
 
+var gravity_field_count: int = 0
+var base_gravity: int = 900
+
 # List to keep track of everyone currently inside the hitbox
 var overlapping_targets = []
 
@@ -31,10 +34,9 @@ func apply_damage(amount: int):
 		
 func die():
 	queue_free()
-	
 
 func get_clipboard_data() -> ClipboardData:
-	print(number_of_clone)
+	#print(number_of_clone)
 	var data = ClipboardData.new()
 	data.type = "enemy"
 	data.sprite_frames = $Sprite2D.sprite_frames

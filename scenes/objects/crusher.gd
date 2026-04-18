@@ -2,17 +2,16 @@ extends CopyableObjectBase
 
 @export var crush_damage: int = 150
 var gravity: float = 1000.0 # High gravity for a "heavy" feel
+var gravity_field_count: int = 0
+var base_gravity: int = 900
+
 var is_locked: bool = false
 
 func _physics_process(delta):
 
-	# Apply gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	else:
-		# It hit the floor!
-		velocity = Vector2.ZERO
-		_on_landed()
+	velocity.y += gravity * delta
+	
+	#_on_landed()
 
 	move_and_slide()
 	

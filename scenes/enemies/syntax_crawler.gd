@@ -15,7 +15,7 @@ func _ready():
 func _physics_process(delta):
 	# Apply Gravity
 	velocity.y += gravity * delta
-	velocity.y = clamp(velocity.y, -3000, 3000)
+	velocity.y = clamp(velocity.y, -900, 900)
 	if is_freeze:
 		return
 
@@ -27,6 +27,7 @@ func _physics_process(delta):
 	# 3. Apply movement (Runs EVERY frame, rain or shine)
 	velocity.x = direction * speed
 	move_and_slide()
+
 
 func flip_direction():
 	direction *= -1

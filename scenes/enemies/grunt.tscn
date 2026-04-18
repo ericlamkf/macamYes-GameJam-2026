@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcawbu40era7q"]
 
-[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemy.tscn" id="1_usvl4"]
-[ext_resource type="Script" uid="uid://b3t1xrvo36vu8" path="res://scenes/grunt.gd" id="2_6upo6"]
+[ext_resource type="PackedScene" uid="uid://ljpk5byijwfc" path="res://scenes/enemies/enemy.tscn" id="1_usvl4"]
+[ext_resource type="Script" uid="uid://b3t1xrvo36vu8" path="res://scenes/enemies/grunt.gd" id="2_6upo6"]
 [ext_resource type="PackedScene" uid="uid://bdrps8k1cu7ho" path="res://scenes/projectile.tscn" id="3_t8odd"]
 [ext_resource type="Texture2D" uid="uid://dwynb85t5rwec" path="res://assets/sprites/enemies/burn3r.png" id="4_jjune"]
 

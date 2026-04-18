@@ -26,14 +26,14 @@ func _ready():
 	_on_patrol_timeout()
 	
 	# 2. Setup Detection Area
-	detection_area.body_entered.connect(_on_body_entered)
-	detection_area.body_exited.connect(_on_body_exited)
+	#detection_area.body_entered.connect(_on_body_entered)
+	#detection_area.body_exited.connect(_on_body_exited)
 	ray_cast.enabled = false # Save CPU until player is near
 
 func _physics_process(delta):
 	# Apply Gravity
 	velocity.y += gravity * delta
-	velocity.y = clamp(velocity.y, -3000, 3000)
+	velocity.y = clamp(velocity.y, -900, 900)
 
 	if is_freeze:
 		return

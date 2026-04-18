@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpu7imeg1um2j"]
 
-[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/copyable_object.tscn" id="1_lv1wq"]
-[ext_resource type="Script" uid="uid://c3mij6ec28ijq" path="res://scenes/capacitor.gd" id="2_jywr7"]
+[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/objects/copyable_object.tscn" id="1_lv1wq"]
+[ext_resource type="Script" uid="uid://c3mij6ec28ijq" path="res://scenes/objects/capacitor.gd" id="2_jywr7"]
 [ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="3_jnthu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnthu"]

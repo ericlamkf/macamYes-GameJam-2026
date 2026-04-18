@@ -8,6 +8,9 @@ extends CharacterBody2D
 @onready var copy_ray = $RayCast2D
 @onready var aim_line = $Line2D
 
+var gravity_field_count: int = 0
+var base_gravity: int = 900
+
 var controls_inverted_signal = false
 var controls_inverted = false
 var view_direction
@@ -31,12 +34,12 @@ func collect_key(key: String) -> void:
 func _physics_process(delta):
 	# 1. Handle Gravity
 	velocity.y += gravity * delta
-	velocity.y = clamp(velocity.y, -3000, 3000)
-
+	velocity.y = clamp(velocity.y, -900, 900)
+			
 	# 3. Get horizontal input direction
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	# 4. "Regain" logic: Stop inversion only when the player stops moving
+	# 4. "Regain" logic: Stop inversion only when the plaayer stops moving
 	if direction == 0:
 		if controls_inverted_signal:
 			controls_inverted = true
