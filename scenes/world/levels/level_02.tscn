@@ -1,18 +1,16 @@
-[gd_scene format=4 uid="uid://b5jcil8ocplrj"]
+[gd_scene format=4 uid="uid://bwlkwrdshmpbh"]
 
 [ext_resource type="Texture2D" uid="uid://24cpyr0lgle6" path="res://assets/tilesets/tiles/tileset.png" id="1_7p77m"]
 [ext_resource type="Texture2D" uid="uid://bb7tcoclmkwsy" path="res://assets/sprites/entities/Keyboard Letters and Symbols.png" id="1_wx6wn"]
 [ext_resource type="Texture2D" uid="uid://cxrkpdiqd8ydc" path="res://assets/sprites/entities/Keyboard Extras.png" id="2_cxyf7"]
 [ext_resource type="Texture2D" uid="uid://404n55ahpc6f" path="res://assets/tilesets/tiles/background.png" id="2_sds6h"]
 [ext_resource type="Texture2D" uid="uid://d06u5okj1vaaf" path="res://assets/tilesets/tiles/background.jpg" id="3_b1tps"]
-[ext_resource type="PackedScene" uid="uid://dkyu8aq86exwx" path="res://scenes/enemies/syntax_crawler.tscn" id="6_lamne"]
 [ext_resource type="PackedScene" uid="uid://6ko0ng811g8d" path="res://scenes/shared/KillZone.tscn" id="6_sds6h"]
 [ext_resource type="PackedScene" uid="uid://c0r8rko4laisq" path="res://scenes/player/player.tscn" id="7_b1tps"]
 [ext_resource type="PackedScene" uid="uid://bvt0bfqlq11ii" path="res://scenes/shared/checkpoint.tscn" id="9_8pjek"]
 [ext_resource type="PackedScene" uid="uid://14gfhr8pc58t" path="res://scenes/ui.tscn" id="10_8pjek"]
-[ext_resource type="Script" uid="uid://d22n5gfdlybdt" path="res://scripts/world/level_exit.gd" id="10_l02ex"]
 [ext_resource type="PackedScene" uid="uid://bh1nk2xun13s5" path="res://scenes/ctrl_entity.tscn" id="11_sqt4a"]
-[ext_resource type="PackedScene" uid="uid://bguopu8xnngha" path="res://scenes/pickups/tab_entity.tscn" id="13_8oc6n"]
+[ext_resource type="PackedScene" uid="uid://dk18u8fqiudy3" path="res://scenes/enemies/hand.tscn" id="12_sqt4a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq7w0"]
 texture = ExtResource("1_wx6wn")
@@ -650,10 +648,6 @@ texture = ExtResource("1_7p77m")
 [sub_resource type="TileSet" id="TileSet_hgy7r"]
 sources/0 = SubResource("TileSetAtlasSource_8p1rb")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lpfl"]
-radius = 9.0
-height = 64.0
-
 [node name="Level02" type="Node2D" unique_id=1244330046]
 
 [node name="TileMapDirection" type="TileMapLayer" parent="." unique_id=430529281]
@@ -683,18 +677,6 @@ z_index = -2
 position = Vector2(496.4999, -190.50009)
 scale = Vector2(1.9248044, 2.0491157)
 texture = ExtResource("3_b1tps")
-
-[node name="SyntaxCrawler_A" parent="." unique_id=717656759 instance=ExtResource("6_lamne")]
-position = Vector2(403, -36)
-
-[node name="SyntaxCrawler_B" parent="." unique_id=1802971641 instance=ExtResource("6_lamne")]
-position = Vector2(261, -322)
-
-[node name="SyntaxCrawler_C" parent="." unique_id=621936786 instance=ExtResource("6_lamne")]
-position = Vector2(150, -211)
-
-[node name="SyntaxCrawler_D" parent="." unique_id=769004077 instance=ExtResource("6_lamne")]
-position = Vector2(852, -242)
 
 [node name="KillLine" parent="." unique_id=2101105798 instance=ExtResource("6_sds6h")]
 position = Vector2(512, 144)
@@ -731,19 +713,7 @@ process_callback = 0
 [node name="CtrlEntity2" parent="." unique_id=792347138 instance=ExtResource("11_sqt4a")]
 position = Vector2(-58, -56)
 
-[node name="TABEntity" parent="." unique_id=1094736740 instance=ExtResource("13_8oc6n")]
-position = Vector2(139, -460)
-scale = Vector2(0.8, 0.8)
-
-[node name="LevelExit" type="Area2D" parent="TABEntity" unique_id=1957457338]
-position = Vector2(0, 5)
-scale = Vector2(1.2499999, 1.2499999)
-script = ExtResource("10_l02ex")
-next_level_path = "res://scenes/world/levels/level_02.tscn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TABEntity/LevelExit" unique_id=2049238950]
-position = Vector2(0, -2)
-rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_4lpfl")
+[node name="Hand" parent="." unique_id=1488202561 instance=ExtResource("12_sqt4a")]
+position = Vector2(779, -22)
 
 [connection signal="copy_successful" from="Player2" to="Player2/Camera2D/UI" method="_on_player_copy_successful"]

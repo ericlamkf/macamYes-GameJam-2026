@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://03fjsnnc7d8f"]
+
+[ext_resource type="Script" uid="uid://dv34davqbin6p" path="res://scenes/ending.gd" id="1_fyrdv"]
+[ext_resource type="FontFile" uid="uid://c8trj0aomcxtm" path="res://assets/fonts/glyphmesss.ttf" id="2_2x1jc"]
+
+[node name="EndingScreen" type="CanvasLayer" unique_id=397108595]
+script = ExtResource("1_fyrdv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=647658094]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=131368624]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_2x1jc")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
