@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bux0v1gkisxno"]
 
-[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/copyable_object.tscn" id="1_njnmo"]
-[ext_resource type="Script" uid="uid://cr5q7i54vcp70" path="res://scenes/crusher.gd" id="2_os0a3"]
+[ext_resource type="PackedScene" uid="uid://cbls470jpu0wg" path="res://scenes/objects/copyable_object.tscn" id="1_njnmo"]
+[ext_resource type="Script" uid="uid://cr5q7i54vcp70" path="res://scenes/objects/crusher.gd" id="2_os0a3"]
 [ext_resource type="Texture2D" uid="uid://q0xsr0473y33" path="res://assets/sprites/ui/portrets.png" id="3_mfxk6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfxk6"]
@@ -27,6 +27,7 @@ collision_mask = 55
 script = ExtResource("2_os0a3")
 crush_damage = 150
 object_id = "crusher"
+timeout = 12
 
 [node name="AnimatedSprite2D" parent="." index="1" unique_id=849470058]
 position = Vector2(0, -10)

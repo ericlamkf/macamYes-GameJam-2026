@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c0r8rko4laisq"]
 
-[ext_resource type="Script" uid="uid://dfa3djatwcghi" path="res://scripts/player.gd" id="1_v6fml"]
+[ext_resource type="Script" uid="uid://dfa3djatwcghi" path="res://scenes/player/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://dw4jrp6kllxd5" path="res://assets/sprites/player/player_sheet.png" id="2_g2els"]
-[ext_resource type="Script" uid="uid://csccty0vs1n4n" path="res://scenes/hurtbox.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://csccty0vs1n4n" path="res://scenes/shared/hurtbox.gd" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -76,6 +76,7 @@ size = Vector2(18, 19)
 
 [node name="Player" type="CharacterBody2D" unique_id=1421281123 groups=["player"]]
 collision_mask = 54
+collision_priority = 0.1
 script = ExtResource("1_v6fml")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2014346780]
