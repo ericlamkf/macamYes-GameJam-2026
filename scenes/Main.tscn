@@ -1,5 +1,4 @@
-[gd_scene format=3 uid="uid://dy2jom3vb7waa"]
-
+[gd_scene format=3 uid="uid://ke2b1bcpmma1"]
 
 [ext_resource type="Script" uid="uid://kwvljhm2wnsh" path="res://scenes/main.gd" id="1_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://bhnkce5yr8d5j" path="res://icon.svg" id="2_jkv2x"]
@@ -25,7 +24,7 @@ size = Vector2(47, 942)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwfav"]
 size = Vector2(255, 20)
 
-[node name="Node2D" type="Node2D" unique_id=1585743878]
+[node name="Main" type="Node2D" unique_id=1585743878]
 position = Vector2(945, 915)
 script = ExtResource("1_a8y0u")
 

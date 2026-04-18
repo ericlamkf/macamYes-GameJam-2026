@@ -10,8 +10,9 @@ func _ready() -> void:
 var glyphs = "01ABCDE#!?@&$"
 var timer = 0.0
 var interval = 0.5 # Change every 0.5 seconds
+var corrupted
 
-func _process(delta: float) -> void:
+func _process(delta: float):
 	timer += delta
 		
 	if timer >= interval:
@@ -20,19 +21,27 @@ func _process(delta: float) -> void:
 
 func update_glitch_text():
 	var random_text = ""
-	for i in range(4):
-		random_text += glyphs[randi() % glyphs.length()]
+	if(corrupted):
+		for i in range(4):
+			random_text += glyphs[randi() % glyphs.length()]
+	else:
+		for i in range(4):
+			random_text += str(randi_range(0, 1))
 	
 	# Using BBCode to keep it shaking even between text changes
 	$ClipboardFrame/RichTextLabel.bbcode_enabled = true
-	$ClipboardFrame/RichTextLabel.text = "[center][shake rate=10.0 level=5][color=red]" + random_text + "[/color][/shake][/center]"
-
+	if(corrupted):
+		$ClipboardFrame/RichTextLabel.text = "[center][shake rate=10.0 level=5][color=red]" + random_text + "[/color][/shake][/center]"
+	else:
+		$ClipboardFrame/RichTextLabel.text = "[center]" + random_text + "[/center]"
+		
 func _on_player_copy_successful(data):
 	$ClipboardFrame/AnimatedSprite2D.visible = false
 	$ClipboardFrame/RichTextLabel.visible = false
 	
 	if(data.type == "projectile"):
-		if(!data.data["corrupted"]):
+		corrupted = data.data["corrupted"]
+		if(!corrupted):
 			$ClipboardFrame/RichTextLabel.text = "[center]0101[/center]"
 		else:
 			$ClipboardFrame/RichTextLabel.text = "[center][shake rate=10.0 level=5][color=red]" + "@0!1" + "[/color][/shake][/center]"
