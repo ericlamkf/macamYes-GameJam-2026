@@ -108,8 +108,15 @@ func _physics_process(delta):
 		
 
 func _on_area_entered(area: Area2D):
-	if(!shot):
+	print(area) # debug purpose
+	# 1. Don't collide if it hasn't been fired yet
+	if (!shot):
 		return
+		
+	# 2. FOOLPROOF FRIENDLY FIRE
+	if area.owner == source:
+		return
+
 	# The 'area' is the Hurtbox of the enemy
 	if area.has_method("take_damage"):
 		area.take_damage(projectile_damage)             # Send it to the target

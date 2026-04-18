@@ -107,12 +107,30 @@ func paste_object(clipboard: ClipboardData):
 	if type == "projectile":
 		instance.shoot(self, view_direction)
 	elif type == "enemy":
-		if view_direction.x > 0 and instance.has_method("set_facing_direction"):
+		# 1. Handle Facing Direction (Checks both left and right)
+		if view_direction.x < 0 and instance.has_method("set_facing_direction"):
+			instance.set_facing_direction(-1) # Note: check if your enemy script expects -1 or "left"
+		elif view_direction.x > 0 and instance.has_method("set_facing_direction"):
 			instance.set_facing_direction("right")
 		
-		instance.spawn_ally(clipboard.data["number_of_clone"] + 1)
+		# 2. Ally Logic
+		if instance.has_method("spawn_ally"):
+			# If the main branch's new spawn_ally function exists, use it safely
+			var clones = 0
+			if clipboard.data.has("number_of_clone"):
+				clones = clipboard.data["number_of_clone"]
+			instance.spawn_ally(clones + 1)
+		else:
+			# Otherwise, use your manual 15-second self-destruct logic
+			instance.is_ally = true
+			instance.max_health = int(instance.max_health * 0.5)
+			instance.current_health = instance.max_health
+			get_tree().create_timer(15.0).timeout.connect(instance.queue_free)
+
 	elif type == "object":
-		instance.on_pasted(true)
+		# Retained from main branch so object pasting doesn't break
+		if instance.has_method("on_pasted"):
+			instance.on_pasted(true)
 
 func update_copy_ray():
 	var mouse_pos = get_global_mouse_position()
