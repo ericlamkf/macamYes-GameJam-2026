@@ -701,6 +701,9 @@ shape = SubResource("CapsuleShape2D_8y18y")
 [node name="KillLine" parent="." unique_id=2101105798 instance=ExtResource("4_vd6wv")]
 position = Vector2(384, 297)
 
+[node name="KillLine5" parent="." unique_id=181792794 instance=ExtResource("4_vd6wv")]
+position = Vector2(384, 297)
+
 [node name="KillLine2" parent="." unique_id=2106631548 instance=ExtResource("4_vd6wv")]
 position = Vector2(392, -703)
 rotation = 3.1415927

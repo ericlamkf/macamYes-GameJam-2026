@@ -6,6 +6,8 @@ var direction: int = 1
 @onready var wall_check = $WallCheck
 @onready var ledge_check = $LedgeCheck
 @onready var sprite = $Sprite2D
+var is_attacking: bool = false
+var is_dead: bool = false # To prevent movement after death
 
 func _ready():
 	# Runs the code from EnemyBase's _ready (setting health)
@@ -15,10 +17,19 @@ func _ready():
 func _physics_process(delta):
 	# Apply Gravity
 	velocity.y += gravity * delta
-	velocity.y = clamp(velocity.y, -900, 900)
-	if is_freeze:
+	velocity.y = clamp(velocity.y, -3000, 3000)
+	
+	if is_dead or is_freeze:
+		velocity.x = 0
+		move_and_slide()
 		return
-
+	
+	# 1. Attack Lock
+	if is_attacking:
+		velocity.x = 0 # Stand still to attack
+		move_and_slide()
+		return
+		
 	# 2. Check if we should flip (Ground logic)
 	if is_on_floor():
 		if wall_check.is_colliding() or not ledge_check.is_colliding():
@@ -26,6 +37,7 @@ func _physics_process(delta):
 			
 	# 3. Apply movement (Runs EVERY frame, rain or shine)
 	velocity.x = direction * speed
+	sprite.play("default")
 	move_and_slide()
 
 
@@ -76,4 +88,44 @@ func spawn_ally(number_of_clone:int):
 	$Hurtbox.remove_from_group("enemies")
 	
 	await get_tree().create_timer(ally_timeout).timeout
-	queue_free()
+	die()
+
+# --- ANIMATION TRIGGER LOGIC ---
+
+# Trigger this via a signal (e.g., DetectionRange Area2D) 
+# or inside your EnemyBase logic when near the player
+func start_attack():
+	if not is_attacking and not is_dead:
+		is_attacking = true
+		sprite.play("attack")
+
+# EnemyBase handles apply_damage and calls this automatically!
+func die():
+	if is_dead: return # Shotgun bug prevention
+	is_dead = true
+	sprite.play("death")
+	
+	# ONLY disable the layer so the player can walk through the corpse.
+	# Do NOT touch collision_mask, so the body still hits the floor!
+	collision_layer = 0 
+	
+	# Safely turn off the damage zones using set_deferred
+	if has_node("Hitbox"): 
+		$Hitbox.set_deferred("monitoring", false)
+		$Hitbox.set_deferred("monitorable", false)
+	if has_node("Hurtbox"): 
+		$Hurtbox.set_deferred("monitoring", false)
+		$Hurtbox.set_deferred("monitorable", false)
+	
+# --- SIGNAL CONNECTION ---
+# Connect the AnimatedSprite2D's animation_finished() signal to this function
+func _on_sprite_2d_animation_finished() -> void:
+	if sprite.animation == "attack":
+		is_attacking = false
+		
+	if sprite.animation == "death":
+		queue_free()
+		
+func _on_hitbox_area_entered(area):
+	if area.name == "Hurtbox" or area.get_parent().name == "Player":
+		start_attack()

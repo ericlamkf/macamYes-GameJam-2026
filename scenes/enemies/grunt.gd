@@ -8,14 +8,18 @@ extends EnemyBase
 @onready var ray_cast = $RayCast2D
 @onready var patrol_timer = $Timer
 @onready var detection_area = $DetectionArea
-@onready var muzzle = $Marker2D
+@onready var muzzle = $Marker2D # Positioned at the gun/chest
+@onready var sprite = $Sprite2D # Grabbing the sprite reference
+@onready var boom_sound = $BoomSound
 
 var direction: float = 1.0
 var target: Node2D = null
 var can_shoot: bool = true
 var is_aiming: bool = false
 var target_location: Vector2
+
 var targets_in_sight: Array = []
+var is_dead: bool = false
 
 func _ready():
 	super._ready()
@@ -36,7 +40,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity.y = clamp(velocity.y, -900, 900)
 
-	if is_freeze:
+	if is_freeze or is_dead:
 		return
 
 	# Check if current target was destroyed/freed
@@ -59,8 +63,34 @@ func _physics_process(delta):
 	else:
 		# --- PATROL STATE ---
 		velocity.x = direction * speed
+	
+	# --- Idle / Run Animations ---
+	# We only play these if we aren't currently playing the "attack" animation
+	if not is_aiming:
+		if velocity.x == 0:
+			sprite.play("idle")
+		else:
+			sprite.play("run")
 		
 	move_and_slide()
+	
+func die():
+	if is_dead: return # Shotgun bug prevention
+	is_dead = true
+	
+	set_physics_process(false)
+	patrol_timer.stop()
+	
+	# Turn off hitboxes so the player doesn't take damage from a dead body
+	if has_node("Hitbox"):
+		$Hitbox.set_deferred("monitoring", false)
+	if has_node("Hurtbox"):
+		$Hurtbox.set_deferred("monitorable", false)
+		
+	# Play death animation and wait for it to finish
+	sprite.play("death")
+	await sprite.animation_finished
+	queue_free()
 
 # --- Helper: Line of Sight ---
 func can_see_hostile() -> bool:
@@ -98,12 +128,16 @@ func update_target():
 func start_aiming_sequence():
 	is_aiming = true
 	
+	sprite.play("attack")
+	
 	await get_tree().create_timer(aim_ready_time).timeout
 	
 	# Final check: target must be alive AND we must still have line of sight
 	if is_instance_valid(target) and can_see_hostile():
+		boom_sound.play()
 		shoot(target_location)
 	
+	# shot is fired
 	is_aiming = false 
 
 func shoot(target_pos: Vector2):
@@ -204,4 +238,4 @@ func spawn_ally(number_of_clone:int):
 	$DetectionArea.set_collision_mask_value(2, true)
 	
 	await get_tree().create_timer(ally_timeout).timeout
-	queue_free()
+	die()
