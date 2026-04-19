@@ -88,6 +88,7 @@ func _on_fatal_hitbox_body_entered(body: Node2D) -> void:
 		
 		start_attack()
 		# 1. Force the player to die instantly by dealing massive damage
+		GameState.skip_death_screen = true
 		if body.has_method("apply_damage"):
 			body.apply_damage(9999)
 		

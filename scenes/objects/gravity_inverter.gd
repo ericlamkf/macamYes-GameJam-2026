@@ -21,6 +21,7 @@ func _on_body_entered(body):
 
 	if active:
 		body.gravity_field_count += 1
+		
 		update_gravity(body)
 
 

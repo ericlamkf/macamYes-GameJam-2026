@@ -127,5 +127,6 @@ func _on_sprite_2d_animation_finished() -> void:
 		queue_free()
 		
 func _on_hitbox_area_entered(area):
+	super._on_hitbox_area_entered(area)
 	if area.name == "Hurtbox" or area.get_parent().name == "Player":
 		start_attack()

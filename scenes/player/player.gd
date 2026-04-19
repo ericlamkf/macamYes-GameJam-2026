@@ -273,11 +273,13 @@ func apply_damage(damage:int):
 		$Hurtbox.set_deferred("monitoring", false)
 
 		# --- DEATH SCREEN ---
-		get_tree().paused = true
-		var scene = death_screen_scene if death_screen_scene else load("res://scenes/player/dead_scene.tscn")
-		if scene:
-			var death_ui = scene.instantiate()
-			get_tree().current_scene.add_child(death_ui)
+		if not GameState.skip_death_screen:
+			get_tree().paused = true
+			var scene = death_screen_scene if death_screen_scene else load("res://scenes/player/dead_scene.tscn")
+			if scene:
+				var death_ui = scene.instantiate()
+				get_tree().current_scene.add_child(death_ui)
+		GameState.skip_death_screen = false
 
 func _on_sprite_2d_animation_finished() -> void:
 	# Unlock copy/shoot
