@@ -741,7 +741,7 @@ process_callback = 0
 position = Vector2(-58, -56)
 
 [node name="TABEntity" parent="." unique_id=1094736740 instance=ExtResource("13_jxvcu")]
-position = Vector2(139, -460)
+position = Vector2(123.999985, -473.99997)
 scale = Vector2(0.8, 0.8)
 
 [node name="LevelExit" type="Area2D" parent="TABEntity" unique_id=1957457338]

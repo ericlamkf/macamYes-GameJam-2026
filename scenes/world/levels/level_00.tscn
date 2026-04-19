@@ -684,7 +684,7 @@ scale = Vector2(2.3066406, 3.2750494)
 texture = ExtResource("3_des34")
 
 [node name="TABEntity" parent="." unique_id=1472873674 instance=ExtResource("6_5rt1s")]
-position = Vector2(637, -546)
+position = Vector2(641, -657)
 scale = Vector2(0.8, 0.8)
 
 [node name="LevelExit" type="Area2D" parent="TABEntity" unique_id=1049924885]
