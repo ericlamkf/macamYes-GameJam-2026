@@ -2,7 +2,7 @@
 
 # Don't Lose CTRL
 
-<img src="screenshots/title.jpeg" alt="Don't Lose CTRL Banner" width="600"/>
+<img src="screenshots/title.jpeg" alt="Don't Lose CTRL Banner" width="400"/>
 
 ---
 
@@ -30,8 +30,8 @@ Survive, manipulate corrupted logic, and recover the lost components of the **Ma
 ---
 
 ## 📸 Screenshots
-|  |  |  |
-|---|---|---|
+|  |  |  
+|---|---|
 | <img src="screenshots/ss-1.jpeg" width="500"/>  | <img src="screenshots/ss-2.jpeg" width="500"/>  |
 | <img src="screenshots/ss-3.jpeg" width="500"/>  | <img src="screenshots/ss-4.jpeg" width="500"/>  | 
 | <img src="screenshots/ss-5.jpeg" width="500"/>  |  |
@@ -55,11 +55,11 @@ Objective: reconstruct the lost **Master Shortcut (C, V, S, Tab)** before system
 
 | Key | Mechanic | Description |
 |-----|----------|-------------|
-| C | Copy Strike | Clone projectiles, objects, and enemies into the clipboard |
-| V | Paste Summon | Spawn copied entities back into the world |
-| Z | Undo | Remove the oldest active paste and recover RAM |
-| S | World Save | Save the current world state as a checkpoint |
-| Tab | Dimension Switch | Swap between corrupted and clean dimensions |
+| `C` | Copy Strike | Clone projectiles, objects, and enemies into the clipboard |
+| `V` | Paste Summon | Spawn copied entities back into the world |
+| `Z` | Undo | Remove the oldest active paste and recover RAM |
+| `S` | World Save | Save the current world state as a checkpoint |
+| `Tab` | Dimension Switch | Swap between corrupted and clean dimensions |
 
 ## 🧠 System Mechanics
 
@@ -76,14 +76,14 @@ CTRL follows the player dynamically. Losing connection triggers chaos effects su
 
 | Key | Action |
 |---|---|
-| A / D | Move |
-| Space | Jump |
-| C | Copy Strike |
-| V | Paste Summon |
-| Z | Undo / Free RAM |
-| S | World Save |
-| Tab | Dimension Switch |
-| Q / E | Cycle Clipboard Slot |
+| `A` / `D` | Move |
+| `Space` | Jump |
+| `C` | Copy Strike |
+| `V` | Paste Summon |
+| `Z` | Undo / Free RAM |
+| `S` | World Save |
+| `Tab` | Dimension Switch |
+| `Q` / `E`| Cycle Clipboard Slot |
 
 ---
 
