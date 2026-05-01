@@ -30,20 +30,12 @@ Survive, manipulate corrupted logic, and recover the lost components of the **Ma
 ---
 
 ## 📸 Screenshots
-
-<table>
-  <tr>
-    <td><img src="screenshots/ss-1.jpeg" width="100%"/></td>
-    <td><img src="screenshots/ss-2.jpeg" width="100%"/></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/ss-3.jpeg" width="100%"/></td>
-    <td><img src="screenshots/ss-4.jpeg" width="100%"/></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/ss-5.jpeg" width="100%"/></td>
-  </tr>
-</table>
+|  |  |  |
+|---|---|---|
+| <img src="screenshots/ss-1.jpeg" width="500"/>  | <img src="screenshots/ss-2.jpeg" width="500"/>  |
+| <img src="screenshots/ss-3.jpeg" width="500"/>  | <img src="screenshots/ss-4.jpeg" width="500"/>  | 
+| <img src="screenshots/ss-5.jpeg" width="500"/>  |  |
+---
 
 ## 🎮 Gameplay Overview
 
