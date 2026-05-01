@@ -166,4 +166,32 @@ macamYes-GameJam-2026/
 
 ---
 
+## 🚧 Future Improvements
+
+While the core gameplay is functional, several systems can be expanded or refined in future iterations:
+
+### Gameplay Systems
+- [ ] Add start / main menu screen flow  
+- [ ] Improve clarity of Copy / Paste interactions for new players  
+- [ ] Improve input responsiveness and control feel  
+- [ ] Add clearer visual feedback for clipboard state  
+- [ ] Balance Chaos Events for fair difficulty progression  
+
+### CTRL Tether System
+- [ ] Improve UI readability of CTRL connection state  
+- [ ] Reduce excessive randomness in control disruption effects  
+- [ ] Add recovery mechanics beyond simple reconnection  
+
+### Technical Improvements
+- [ ] Optimize entity cloning system for performance stability  
+- [ ] Refactor clipboard logic into modular components  
+- [ ] Improve save/load system reliability across levels  
+
+### Polish
+- [ ] Improve UI hierarchy for system messages  
+- [ ] Enhance readability of screen distortion effects  
+- [ ] Improve audio feedback consistency for system states  
+
+---
+
 <div align="center">Created by Team Macam Yes 2026</div>
