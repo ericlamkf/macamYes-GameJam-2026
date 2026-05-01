@@ -1,0 +1,12 @@
+=== Third-Party Credits ===
+
+Sound Effects
+-------------
+health.wav by @Shades
+SoundCloud:
+https://soundcloud.com/noshades
+
+Assets / Toolkit
+----------------
+Pixxxelpunkkk Toolkit by Venoxxx
+https://venoxxx.itch.io/pixxxelpunkkk-toolkit
